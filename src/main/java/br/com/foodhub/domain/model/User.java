@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "user")
+@Table(name = "tb_user")
 public class User implements Serializable {
 
     @Serial
@@ -24,8 +24,11 @@ public class User implements Serializable {
     @Column(nullable = false, length = 150, unique = true)
     private String email;
 
-    @Column(nullable = false, length = 150)
+    @Column(nullable = false, length = 255)
     private String password;
+
+    @Column(nullable = false, length = 255)
+    private String address;
 
     @ManyToOne
     @JoinColumn(name = "user_type_id", nullable = false)
@@ -67,6 +70,14 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public UserType getUserType() {
