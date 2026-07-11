@@ -10,7 +10,7 @@ import java.util.List;
 public class UserTypeMapper {
 
     public UserTypeResponse toResponse(UserType userType) {
-        return new UserTypeResponse(userType.getName());
+        return new UserTypeResponse(userType.getId(), userType.getName());
     }
 
     public List<UserTypeResponse> toResponseList(List<UserType> userTypes) {
