@@ -1,6 +1,9 @@
 package br.com.foodhub.domain.model;
 
+import br.com.foodhub.domain.exception.InvalidMenuItemPriceException;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -8,6 +11,8 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@Getter
+@NoArgsConstructor
 @Entity
 @Table(name = "menu_item")
 public class MenuItem implements Serializable {
@@ -44,75 +49,50 @@ public class MenuItem implements Serializable {
     @JoinColumn(name = "restaurant_id", nullable = false)
     private Restaurant restaurant;
 
-    public UUID getId() {
-        return id;
+    public MenuItem(
+            String name,
+            String description,
+            BigDecimal price,
+            boolean availableOnlyInRestaurant,
+            String imagePath,
+            Restaurant restaurant
+    ) {
+        update(name, description, price, availableOnlyInRestaurant, imagePath, restaurant);
+        this.createdAt = LocalDateTime.now();
     }
 
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
+    public void update(
+            String name,
+            String description,
+            BigDecimal price,
+            boolean availableOnlyInRestaurant,
+            String imagePath,
+            Restaurant restaurant
+    ) {
+        validatePrice(price);
         this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
         this.description = description;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
         this.price = price;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public Boolean getAvailableOnlyInRestaurant() {
-        return availableOnlyInRestaurant;
-    }
-
-    public void setAvailableOnlyInRestaurant(Boolean availableOnlyInRestaurant) {
         this.availableOnlyInRestaurant = availableOnlyInRestaurant;
-    }
-
-    public String getImagePath() {
-        return imagePath;
-    }
-
-    public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
-    }
-
-    public Restaurant getRestaurant() {
-        return restaurant;
-    }
-
-    public void setRestaurant(Restaurant restaurant) {
         this.restaurant = restaurant;
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    public static MenuItem create(
+            String name,
+            String description,
+            BigDecimal price,
+            boolean availableOnlyInRestaurant,
+            String imagePath,
+            Restaurant restaurant
+    ) {
+        return new MenuItem(name, description, price, availableOnlyInRestaurant, imagePath, restaurant);
+    }
+
+    private void validatePrice(BigDecimal price) {
+        if (price == null || price.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new InvalidMenuItemPriceException();
+        }
     }
 }
