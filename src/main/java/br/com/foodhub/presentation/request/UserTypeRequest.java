@@ -12,8 +12,7 @@ public record UserTypeRequest(
 
         @Schema(
                 description = "Name of the user type.",
-                example = "OWNER",
-                requiredMode = Schema.RequiredMode.REQUIRED
+                example = "OWNER"
         )
         @NotBlank(message = "Name is required")
         @Size(
