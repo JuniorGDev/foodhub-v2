@@ -33,7 +33,7 @@ public class UserTypeService {
     }
 
     public UserType update(UUID id, String name) {
-        UserType userType = findUserType(id);
+        var userType = findUserType(id);
         validateUniqueName(name, id);
         userType.update(name);
         return repository.save(userType);

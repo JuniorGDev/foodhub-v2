@@ -27,6 +27,14 @@ public class UserService {
         this.userTypeRepository = userTypeRepository;
     }
 
+    public List<User> findAll() {
+        return repository.findAll();
+    }
+
+    public User findById(UUID id) {
+        return findUser(id);
+    }
+
     public User save(CreateUserDTO userDTO) {
         var userType = findUserType(userDTO.userTypeId());
         validateUniqueEmail(userDTO.email(), null);
@@ -38,14 +46,6 @@ public class UserService {
                 userType
         );
         return repository.save(user);
-    }
-
-    public User findById(UUID id) {
-        return findUser(id);
-    }
-
-    public List<User> findAll() {
-        return repository.findAll();
     }
 
     public User update(UUID id, UpdateUserDTO userDTO) {
