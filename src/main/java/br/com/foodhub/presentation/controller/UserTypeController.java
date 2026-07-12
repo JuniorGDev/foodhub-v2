@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/user-types")
+@RequestMapping("/api/v1/user-types")
 @Tag(
         name = "User Types",
         description = "Endpoints responsible for managing user types."
