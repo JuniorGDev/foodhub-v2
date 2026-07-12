@@ -78,6 +78,10 @@ public class User implements Serializable {
         return email.trim().toLowerCase();
     }
 
+    public boolean isOwner() {
+        return this.userType.isOwner();
+    }
+
     public static User create(
             String name,
             String email,
