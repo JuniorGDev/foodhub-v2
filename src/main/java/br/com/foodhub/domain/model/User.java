@@ -1,12 +1,15 @@
 package br.com.foodhub.domain.model;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@Getter
+@NoArgsConstructor
 @Entity
 @Table(name = "tb_user")
 public class User implements Serializable {
@@ -40,67 +43,54 @@ public class User implements Serializable {
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
+    public User(
+            String name,
+            String email,
+            String password,
+            String address,
+            UserType userType
+    ) {
         this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
+        this.email = normalizeEmail(email);
         this.password = password;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
         this.address = address;
-    }
-
-    public UserType getUserType() {
-        return userType;
-    }
-
-    public void setUserType(UserType userType) {
         this.userType = userType;
+
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = this.createdAt;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
+    public void update(
+            String name,
+            String email,
+            String address,
+            UserType userType
+    ) {
+        this.name = name;
+        this.email = normalizeEmail(email);
+        this.address = address;
+        this.userType = userType;
+
+        this.updatedAt = LocalDateTime.now();
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
+    private String normalizeEmail(String email) {
+        return email.trim().toLowerCase();
     }
 
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
+    public static User create(
+            String name,
+            String email,
+            String password,
+            String address,
+            UserType userType
+    ) {
+        return new User(
+                name,
+                email,
+                password,
+                address,
+                userType
+        );
     }
 }

@@ -1,12 +1,15 @@
 package br.com.foodhub.domain.model;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@Getter
+@NoArgsConstructor
 @Entity
 @Table(name = "user_type")
 public class UserType implements Serializable {
@@ -27,35 +30,22 @@ public class UserType implements Serializable {
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 
-    public UUID getId() {
-        return id;
+    public UserType(String name) {
+        this.name = normalize(name);
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = this.createdAt;
     }
 
-    public void setId(UUID id) {
-        this.id = id;
+    public void update(String name) {
+        this.name = normalize(name);
+        this.updatedAt = LocalDateTime.now();
     }
 
-    public String getName() {
-        return name;
+    private String normalize(String name) {
+        return name.trim().toUpperCase();
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
+    public static UserType create(String name) {
+        return new UserType(name);
     }
 }
