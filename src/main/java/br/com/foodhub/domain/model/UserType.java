@@ -44,4 +44,8 @@ public class UserType implements Serializable {
     private String normalize(String name) {
         return name.trim().toUpperCase();
     }
+
+    public static UserType create(String name) {
+        return new UserType(name);
+    }
 }

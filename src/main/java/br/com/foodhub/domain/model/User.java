@@ -77,4 +77,20 @@ public class User implements Serializable {
     private String normalizeEmail(String email) {
         return email.trim().toLowerCase();
     }
+
+    public static User create(
+            String name,
+            String email,
+            String password,
+            String address,
+            UserType userType
+    ) {
+        return new User(
+                name,
+                email,
+                password,
+                address,
+                userType
+        );
+    }
 }

@@ -30,7 +30,7 @@ public class UserService {
     public User save(CreateUserDTO userDTO) {
         var userType = findUserType(userDTO.userTypeId());
         validateUniqueEmail(userDTO.email(), null);
-        var user = new User(
+        var user = User.create(
                 userDTO.name(),
                 userDTO.email(),
                 userDTO.password(),

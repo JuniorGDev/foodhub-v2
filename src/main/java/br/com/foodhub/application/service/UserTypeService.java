@@ -27,7 +27,7 @@ public class UserTypeService {
     }
 
     public UserType save(String name) {
-        var userType = new UserType(name);
+        var userType = UserType.create(name);
         validateUniqueName(userType.getName(), null);
         return repository.save(userType);
     }
