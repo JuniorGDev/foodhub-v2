@@ -1,5 +1,6 @@
 package br.com.foodhub.domain.model;
 
+import br.com.foodhub.shared.constants.UserTypeConstants;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,7 +22,7 @@ public class UserType implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(nullable = false, length = 150)
+    @Column(nullable = false, length = 150, unique = true)
     private String name;
 
     @Column(nullable = false)
@@ -43,6 +44,10 @@ public class UserType implements Serializable {
 
     private String normalize(String name) {
         return name.trim().toUpperCase();
+    }
+
+    public boolean isOwner() {
+        return UserTypeConstants.OWNER.equals(this.name);
     }
 
     public static UserType create(String name) {

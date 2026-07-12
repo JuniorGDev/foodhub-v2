@@ -5,7 +5,10 @@ public final class ValidationConstants {
     private ValidationConstants() {}
 
     public static final int NAME_MIN_LENGTH = 3;
-    public static final int NAME_MAX_LENGTH = 100;
+    public static final int NAME_MAX_LENGTH = 150;
+
+    public static final int DESCRIPTION_MAX_LENGTH = 250;
+    public static final int IMAGE_PATH_MAX_LENGTH = 255;
 
     public static final int EMAIL_MAX_LENGTH = 150;
 
