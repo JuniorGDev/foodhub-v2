@@ -124,13 +124,4 @@ public class GlobalExceptionHandler {
                 e.getMessage()
         );
     }
-
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<ProblemDetail> handleException(Exception e) {
-        return buildResponse(
-                HttpStatus.INTERNAL_SERVER_ERROR,
-                "Internal server error",
-                e.getMessage()
-        );
-    }
 }
