@@ -1,12 +1,16 @@
 package br.com.foodhub.domain.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@Getter
+@NoArgsConstructor
 @Entity
 @Table(name = "kitchen_type")
 public class KitchenType implements Serializable {
@@ -27,35 +31,22 @@ public class KitchenType implements Serializable {
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 
-    public UUID getId() {
-        return id;
+    public KitchenType(String name) {
+        this.name = normalizedName(name);
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = createdAt;
     }
 
-    public void setId(UUID id) {
-        this.id = id;
+    public void update(String name) {
+        this.name = normalizedName(name);
+        this.updatedAt = LocalDateTime.now();
     }
 
-    public String getName() {
-        return name;
-    }
+    private String normalizedName(String name){
+        return name.trim().toLowerCase();
+    };
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
+    public static KitchenType create(String name) {
+        return new KitchenType(name);
     }
 }

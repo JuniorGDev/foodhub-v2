@@ -1,7 +1,10 @@
 package br.com.foodhub.domain.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import br.com.foodhub.domain.exception.InvalidBusinessHoursException;
+import br.com.foodhub.domain.exception.InvalidRestaurantOwnerException;
+import br.com.foodhub.shared.constants.ValidationConstants;
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -11,6 +14,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
+@Getter
+@NoArgsConstructor
 @Entity
 @Table(name = "restaurant")
 public class Restaurant implements Serializable {
@@ -22,14 +27,14 @@ public class Restaurant implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(nullable = false, length = 150, unique = true)
+    @Column(nullable = false, length = ValidationConstants.NAME_MAX_LENGTH)
     private String name;
 
     @ManyToOne
     @JoinColumn(name = "kitchen_type_id", nullable = false)
     private KitchenType kitchenType;
 
-    @Column(nullable = false, length = 255)
+    @Column(nullable = false, length = ValidationConstants.ADDRESS_MAX_LENGTH)
     private String address;
 
     @Column(nullable = false)
@@ -51,83 +56,61 @@ public class Restaurant implements Serializable {
     @JoinColumn(name = "user_id", nullable = false)
     private User owner;
 
-    public UUID getId() {
-        return id;
+    public Restaurant(
+            String name,
+            KitchenType kitchenType,
+            String address,
+            LocalTime openingTime,
+            LocalTime closingTime,
+            User owner
+    ){
+        update(name, kitchenType, address, openingTime, closingTime, owner);
+        this.createdAt = LocalDateTime.now();
     }
 
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
+    public void update(
+            String name,
+            KitchenType kitchenType,
+            String address,
+            LocalTime openingTime,
+            LocalTime closingTime,
+            User owner
+    ) {
+        validateOwner(owner);
+        validateBusinessHours(openingTime, closingTime);
         this.name = name;
-    }
-
-    public KitchenType getKitchenType() {
-        return kitchenType;
-    }
-
-    public void setKitchenType(KitchenType kitchenType) {
         this.kitchenType = kitchenType;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
         this.address = address;
-    }
-
-    public LocalTime getOpeningTime() {
-        return openingTime;
-    }
-
-    public void setOpeningTime(LocalTime openingTime) {
         this.openingTime = openingTime;
-    }
-
-    public LocalTime getClosingTime() {
-        return closingTime;
-    }
-
-    public void setClosingTime(LocalTime closingTime) {
         this.closingTime = closingTime;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public Set<MenuItem> getMenuItems() {
-        return menuItems;
-    }
-
-    public void setMenuItems(Set<MenuItem> menuItems) {
-        this.menuItems = menuItems;
-    }
-
-    public User getOwner() {
-        return owner;
-    }
-
-    public void setOwner(User owner) {
         this.owner = owner;
+
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    public static Restaurant create(
+            String name,
+            KitchenType kitchenType,
+            String address,
+            LocalTime openingTime,
+            LocalTime closingTime,
+            User owner
+    ) {
+        return new Restaurant(name, kitchenType, address, openingTime, closingTime, owner);
+    }
+
+    private void validateOwner(User owner) {
+        if (!owner.isOwner()) {
+            throw new InvalidRestaurantOwnerException();
+        }
+    }
+
+    private void validateBusinessHours(
+            LocalTime opening,
+            LocalTime closing
+    ) {
+        if (!opening.isBefore(closing)) {
+            throw new InvalidBusinessHoursException();
+        }
     }
 }
