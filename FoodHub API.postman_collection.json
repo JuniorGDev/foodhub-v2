@@ -1,0 +1,3145 @@
+{
+	"info": {
+		"_postman_id": "d0a76a7f-9413-49db-9b8b-82d9282f56cb",
+		"name": "FoodHub API",
+		"description": "REST API for restaurant, menu and user management.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "53389595",
+		"_collection_link": "https://juniorgeo70-8017150.postman.co/workspace/Geov%C3%A1-Junior's-Workspace~cd97d3aa-cec7-444e-8d34-6b7a30cc5660/collection/53389595-d0a76a7f-9413-49db-9b8b-82d9282f56cb?action=share&source=collection_link&creator=53389595"
+	},
+	"item": [
+		{
+			"name": "api",
+			"item": [
+				{
+					"name": "v1",
+					"item": [
+						{
+							"name": "users",
+							"item": [
+								{
+									"name": "{id}",
+									"item": [
+										{
+											"name": "Find user by ID",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/users/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"users",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "550e8400-e29b-41d4-a716-446655440000",
+															"description": "User identifier"
+														}
+													]
+												},
+												"description": "Returns a user using its unique identifier."
+											},
+											"response": [
+												{
+													"name": "User found",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "*/*"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/users/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"users",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "*/*"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"Geová Junior\",\n  \"email\": \"junior@foodhub.com\",\n  \"address\": \"123 Main Street, São Paulo - SP\",\n  \"userType\": {\n    \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n    \"name\": \"OWNER\"\n  }\n}"
+												},
+												{
+													"name": "User not found",
+													"originalRequest": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/users/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"users",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "Not Found",
+													"code": 404,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										},
+										{
+											"name": "Update an existing user",
+											"request": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"address\": \"123 Main Street, São Paulo - SP\",\n  \"email\": \"junior@foodhub.com\",\n  \"name\": \"Geová Junior\",\n  \"userTypeId\": \"550e8400-e29b-41d4-a716-446655440000\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/users/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"users",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "550e8400-e29b-41d4-a716-446655440000",
+															"description": "User identifier"
+														}
+													]
+												},
+												"description": "Updates the information of an existing user."
+											},
+											"response": [
+												{
+													"name": "User successfully updated",
+													"originalRequest": {
+														"method": "PUT",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															},
+															{
+																"key": "Accept",
+																"value": "*/*"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"address\": \"123 Main Street, São Paulo - SP\",\n  \"email\": \"junior@foodhub.com\",\n  \"name\": \"Geová Junior\",\n  \"userTypeId\": \"550e8400-e29b-41d4-a716-446655440000\"\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/users/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"users",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "*/*"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"Geová Junior\",\n  \"email\": \"junior@foodhub.com\",\n  \"address\": \"123 Main Street, São Paulo - SP\",\n  \"userType\": {\n    \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n    \"name\": \"OWNER\"\n  }\n}"
+												},
+												{
+													"name": "Invalid request",
+													"originalRequest": {
+														"method": "PUT",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"address\": \"123 Main Street, São Paulo - SP\",\n  \"email\": \"junior@foodhub.com\",\n  \"name\": \"Geová Junior\",\n  \"userTypeId\": \"550e8400-e29b-41d4-a716-446655440000\"\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/users/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"users",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "Bad Request",
+													"code": 400,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												},
+												{
+													"name": "User or user type not found",
+													"originalRequest": {
+														"method": "PUT",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"address\": \"123 Main Street, São Paulo - SP\",\n  \"email\": \"junior@foodhub.com\",\n  \"name\": \"Geová Junior\",\n  \"userTypeId\": \"550e8400-e29b-41d4-a716-446655440000\"\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/users/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"users",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "Not Found",
+													"code": 404,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												},
+												{
+													"name": "Email already registered",
+													"originalRequest": {
+														"method": "PUT",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"address\": \"123 Main Street, São Paulo - SP\",\n  \"email\": \"junior@foodhub.com\",\n  \"name\": \"Geová Junior\",\n  \"userTypeId\": \"550e8400-e29b-41d4-a716-446655440000\"\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/users/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"users",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "Conflict",
+													"code": 409,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										},
+										{
+											"name": "Delete a user",
+											"request": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/users/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"users",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "550e8400-e29b-41d4-a716-446655440000",
+															"description": "User identifier"
+														}
+													]
+												},
+												"description": "Deletes a user by its unique identifier."
+											},
+											"response": [
+												{
+													"name": "User successfully deleted",
+													"originalRequest": {
+														"method": "DELETE",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/users/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"users",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "No Content",
+													"code": 204,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												},
+												{
+													"name": "User not found",
+													"originalRequest": {
+														"method": "DELETE",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/users/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"users",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "Not Found",
+													"code": 404,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "List all users",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": "{{baseUrl}}/api/v1/users",
+										"description": "Returns all registered users."
+									},
+									"response": [
+										{
+											"name": "Users successfully returned",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": "{{baseUrl}}/api/v1/users"
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "[\n  {\n    \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n    \"name\": \"Geová Junior\",\n    \"email\": \"junior@foodhub.com\",\n    \"address\": \"123 Main Street, São Paulo - SP\",\n    \"userType\": {\n      \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n      \"name\": \"OWNER\"\n    }\n  },\n  {\n    \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n    \"name\": \"Geová Junior\",\n    \"email\": \"junior@foodhub.com\",\n    \"address\": \"123 Main Street, São Paulo - SP\",\n    \"userType\": {\n      \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n      \"name\": \"OWNER\"\n    }\n  }\n]"
+										}
+									]
+								},
+								{
+									"name": "Create a new user",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"address\": \"123 Main Street, São Paulo - SP\",\n  \"email\": \"junior@foodhub.com\",\n  \"name\": \"Geová Junior\",\n  \"password\": \"StrongPassword123\",\n  \"userTypeId\": \"550e8400-e29b-41d4-a716-446655440000\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{baseUrl}}/api/v1/users",
+										"description": "Creates a new user in the system."
+									},
+									"response": [
+										{
+											"name": "User successfully created",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"address\": \"123 Main Street, São Paulo - SP\",\n  \"email\": \"junior@foodhub.com\",\n  \"name\": \"Geová Junior\",\n  \"password\": \"StrongPassword123\",\n  \"userTypeId\": \"550e8400-e29b-41d4-a716-446655440000\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": "{{baseUrl}}/api/v1/users"
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"Geová Junior\",\n  \"email\": \"junior@foodhub.com\",\n  \"address\": \"123 Main Street, São Paulo - SP\",\n  \"userType\": {\n    \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n    \"name\": \"OWNER\"\n  }\n}"
+										},
+										{
+											"name": "Invalid request",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"address\": \"123 Main Street, São Paulo - SP\",\n  \"email\": \"junior@foodhub.com\",\n  \"name\": \"Geová Junior\",\n  \"password\": \"StrongPassword123\",\n  \"userTypeId\": \"550e8400-e29b-41d4-a716-446655440000\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": "{{baseUrl}}/api/v1/users"
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "User type not found",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"address\": \"123 Main Street, São Paulo - SP\",\n  \"email\": \"junior@foodhub.com\",\n  \"name\": \"Geová Junior\",\n  \"password\": \"StrongPassword123\",\n  \"userTypeId\": \"550e8400-e29b-41d4-a716-446655440000\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": "{{baseUrl}}/api/v1/users"
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Email already registered",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"address\": \"123 Main Street, São Paulo - SP\",\n  \"email\": \"junior@foodhub.com\",\n  \"name\": \"Geová Junior\",\n  \"password\": \"StrongPassword123\",\n  \"userTypeId\": \"550e8400-e29b-41d4-a716-446655440000\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": "{{baseUrl}}/api/v1/users"
+											},
+											"status": "Conflict",
+											"code": 409,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "user-types",
+							"item": [
+								{
+									"name": "{id}",
+									"item": [
+										{
+											"name": "Find user type by ID",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/user-types/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"user-types",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "550e8400-e29b-41d4-a716-446655440000",
+															"description": "User type identifier"
+														}
+													]
+												},
+												"description": "Returns a specific user type using its identifier."
+											},
+											"response": [
+												{
+													"name": "User type found",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "*/*"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/user-types/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"user-types",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "*/*"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"OWNER\"\n}"
+												},
+												{
+													"name": "User type not found",
+													"originalRequest": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/user-types/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"user-types",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "Not Found",
+													"code": 404,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										},
+										{
+											"name": "Update an existing user type",
+											"request": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"name\": \"OWNER\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/user-types/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"user-types",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "550e8400-e29b-41d4-a716-446655440000",
+															"description": "User type identifier"
+														}
+													]
+												},
+												"description": "Updates the information of an existing user type."
+											},
+											"response": [
+												{
+													"name": "User type successfully updated",
+													"originalRequest": {
+														"method": "PUT",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															},
+															{
+																"key": "Accept",
+																"value": "*/*"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"name\": \"OWNER\"\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/user-types/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"user-types",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "*/*"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"OWNER\"\n}"
+												},
+												{
+													"name": "Invalid request",
+													"originalRequest": {
+														"method": "PUT",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"name\": \"OWNER\"\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/user-types/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"user-types",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "Bad Request",
+													"code": 400,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												},
+												{
+													"name": "User type not found",
+													"originalRequest": {
+														"method": "PUT",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"name\": \"OWNER\"\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/user-types/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"user-types",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "Not Found",
+													"code": 404,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												},
+												{
+													"name": "User type already exists",
+													"originalRequest": {
+														"method": "PUT",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"name\": \"OWNER\"\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/user-types/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"user-types",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "Conflict",
+													"code": 409,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										},
+										{
+											"name": "Delete a user type",
+											"request": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/user-types/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"user-types",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "550e8400-e29b-41d4-a716-446655440000",
+															"description": "User type identifier"
+														}
+													]
+												},
+												"description": "Deletes a user type by its identifier."
+											},
+											"response": [
+												{
+													"name": "User type successfully deleted",
+													"originalRequest": {
+														"method": "DELETE",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/user-types/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"user-types",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "No Content",
+													"code": 204,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												},
+												{
+													"name": "User type not found",
+													"originalRequest": {
+														"method": "DELETE",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/user-types/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"user-types",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "Not Found",
+													"code": 404,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "List all user types",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": "{{baseUrl}}/api/v1/user-types",
+										"description": "Returns all registered user types."
+									},
+									"response": [
+										{
+											"name": "User types successfully returned",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": "{{baseUrl}}/api/v1/user-types"
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "[\n  {\n    \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n    \"name\": \"OWNER\"\n  },\n  {\n    \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n    \"name\": \"OWNER\"\n  }\n]"
+										}
+									]
+								},
+								{
+									"name": "Create a new user type",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"OWNER\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{baseUrl}}/api/v1/user-types",
+										"description": "Creates a new user type."
+									},
+									"response": [
+										{
+											"name": "User type successfully created",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"name\": \"OWNER\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": "{{baseUrl}}/api/v1/user-types"
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"OWNER\"\n}"
+										},
+										{
+											"name": "Invalid request",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"name\": \"OWNER\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": "{{baseUrl}}/api/v1/user-types"
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "User type already exists",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"name\": \"OWNER\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": "{{baseUrl}}/api/v1/user-types"
+											},
+											"status": "Conflict",
+											"code": 409,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "restaurants",
+							"item": [
+								{
+									"name": "{id}",
+									"item": [
+										{
+											"name": "Find restaurant by ID",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/restaurants/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"restaurants",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "550e8400-e29b-41d4-a716-446655440000",
+															"description": "Restaurant identifier"
+														}
+													]
+												},
+												"description": "Returns a restaurant using its unique identifier."
+											},
+											"response": [
+												{
+													"name": "Restaurant found",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "*/*"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/restaurants/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"restaurants",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "*/*"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"Pizzaria Napoli\",\n  \"address\": \"Av. Paulista, 1000 - São Paulo/SP\",\n  \"kitchenType\": \"ITALIAN\",\n  \"openingTime\": \"08:00\",\n  \"closingTime\": \"22:00\",\n  \"ownerName\": \"Geová Junior\",\n  \"menuItems\": [\n    {\n      \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n      \"name\": \"Cheeseburger\",\n      \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n      \"price\": 4468.847035892858,\n      \"availableOnlyInRestaurant\": true,\n      \"imagePath\": \"/images/menu-items/cheeseburger.png\"\n    },\n    {\n      \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n      \"name\": \"Cheeseburger\",\n      \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n      \"price\": 3081.092125210665,\n      \"availableOnlyInRestaurant\": true,\n      \"imagePath\": \"/images/menu-items/cheeseburger.png\"\n    }\n  ]\n}"
+												},
+												{
+													"name": "Restaurant not found",
+													"originalRequest": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/restaurants/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"restaurants",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "Not Found",
+													"code": 404,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										},
+										{
+											"name": "Update an existing restaurant",
+											"request": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"address\": \"Av. Paulista, 1000 - São Paulo/SP\",\n  \"closingTime\": \"23:01:03.346Z\",\n  \"kitchenTypeId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"Pizzaria Napoli\",\n  \"openingTime\": \"01:35:21.392Z\",\n  \"ownerId\": \"550e8400-e29b-41d4-a716-446655440000\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/restaurants/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"restaurants",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "550e8400-e29b-41d4-a716-446655440000",
+															"description": "Restaurant identifier"
+														}
+													]
+												},
+												"description": "Updates the information of an existing restaurant."
+											},
+											"response": [
+												{
+													"name": "Restaurant successfully updated",
+													"originalRequest": {
+														"method": "PUT",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															},
+															{
+																"key": "Accept",
+																"value": "*/*"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"address\": \"Av. Paulista, 1000 - São Paulo/SP\",\n  \"closingTime\": \"23:01:03.346Z\",\n  \"kitchenTypeId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"Pizzaria Napoli\",\n  \"openingTime\": \"01:35:21.392Z\",\n  \"ownerId\": \"550e8400-e29b-41d4-a716-446655440000\"\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/restaurants/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"restaurants",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "*/*"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"Pizzaria Napoli\",\n  \"address\": \"Av. Paulista, 1000 - São Paulo/SP\",\n  \"kitchenType\": \"ITALIAN\",\n  \"openingTime\": \"08:00\",\n  \"closingTime\": \"22:00\",\n  \"ownerName\": \"Geová Junior\",\n  \"menuItems\": [\n    {\n      \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n      \"name\": \"Cheeseburger\",\n      \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n      \"price\": 4468.847035892858,\n      \"availableOnlyInRestaurant\": true,\n      \"imagePath\": \"/images/menu-items/cheeseburger.png\"\n    },\n    {\n      \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n      \"name\": \"Cheeseburger\",\n      \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n      \"price\": 3081.092125210665,\n      \"availableOnlyInRestaurant\": true,\n      \"imagePath\": \"/images/menu-items/cheeseburger.png\"\n    }\n  ]\n}"
+												},
+												{
+													"name": "Invalid request",
+													"originalRequest": {
+														"method": "PUT",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"address\": \"Av. Paulista, 1000 - São Paulo/SP\",\n  \"closingTime\": \"23:01:03.346Z\",\n  \"kitchenTypeId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"Pizzaria Napoli\",\n  \"openingTime\": \"01:35:21.392Z\",\n  \"ownerId\": \"550e8400-e29b-41d4-a716-446655440000\"\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/restaurants/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"restaurants",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "Bad Request",
+													"code": 400,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												},
+												{
+													"name": "Restaurant, kitchen type or owner not found",
+													"originalRequest": {
+														"method": "PUT",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"address\": \"Av. Paulista, 1000 - São Paulo/SP\",\n  \"closingTime\": \"23:01:03.346Z\",\n  \"kitchenTypeId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"Pizzaria Napoli\",\n  \"openingTime\": \"01:35:21.392Z\",\n  \"ownerId\": \"550e8400-e29b-41d4-a716-446655440000\"\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/restaurants/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"restaurants",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "Not Found",
+													"code": 404,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												},
+												{
+													"name": "The selected user is not allowed to own a restaurant",
+													"originalRequest": {
+														"method": "PUT",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"address\": \"Av. Paulista, 1000 - São Paulo/SP\",\n  \"closingTime\": \"23:01:03.346Z\",\n  \"kitchenTypeId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"Pizzaria Napoli\",\n  \"openingTime\": \"01:35:21.392Z\",\n  \"ownerId\": \"550e8400-e29b-41d4-a716-446655440000\"\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/restaurants/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"restaurants",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+													"code": 422,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										},
+										{
+											"name": "Delete a restaurant",
+											"request": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/restaurants/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"restaurants",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "550e8400-e29b-41d4-a716-446655440000",
+															"description": "Restaurant identifier"
+														}
+													]
+												},
+												"description": "Deletes a restaurant by its unique identifier."
+											},
+											"response": [
+												{
+													"name": "Restaurant successfully deleted",
+													"originalRequest": {
+														"method": "DELETE",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/restaurants/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"restaurants",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "No Content",
+													"code": 204,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												},
+												{
+													"name": "Restaurant not found",
+													"originalRequest": {
+														"method": "DELETE",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/restaurants/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"restaurants",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "Not Found",
+													"code": 404,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "List all restaurants",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": "{{baseUrl}}/api/v1/restaurants",
+										"description": "Returns all registered restaurants."
+									},
+									"response": [
+										{
+											"name": "Restaurants successfully returned",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": "{{baseUrl}}/api/v1/restaurants"
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "[\n  {\n    \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n    \"name\": \"Pizzaria Napoli\",\n    \"address\": \"Av. Paulista, 1000 - São Paulo/SP\",\n    \"kitchenType\": \"ITALIAN\",\n    \"openingTime\": \"08:00\",\n    \"closingTime\": \"22:00\",\n    \"ownerName\": \"Geová Junior\",\n    \"menuItems\": [\n      {\n        \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n        \"name\": \"Cheeseburger\",\n        \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n        \"price\": 9629.447771947553,\n        \"availableOnlyInRestaurant\": true,\n        \"imagePath\": \"/images/menu-items/cheeseburger.png\"\n      },\n      {\n        \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n        \"name\": \"Cheeseburger\",\n        \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n        \"price\": 3966.458635544956,\n        \"availableOnlyInRestaurant\": true,\n        \"imagePath\": \"/images/menu-items/cheeseburger.png\"\n      }\n    ]\n  },\n  {\n    \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n    \"name\": \"Pizzaria Napoli\",\n    \"address\": \"Av. Paulista, 1000 - São Paulo/SP\",\n    \"kitchenType\": \"ITALIAN\",\n    \"openingTime\": \"08:00\",\n    \"closingTime\": \"22:00\",\n    \"ownerName\": \"Geová Junior\",\n    \"menuItems\": [\n      {\n        \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n        \"name\": \"Cheeseburger\",\n        \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n        \"price\": 5110.087665920398,\n        \"availableOnlyInRestaurant\": true,\n        \"imagePath\": \"/images/menu-items/cheeseburger.png\"\n      },\n      {\n        \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n        \"name\": \"Cheeseburger\",\n        \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n        \"price\": 6557.738291296271,\n        \"availableOnlyInRestaurant\": true,\n        \"imagePath\": \"/images/menu-items/cheeseburger.png\"\n      }\n    ]\n  }\n]"
+										}
+									]
+								},
+								{
+									"name": "Create a new restaurant",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"address\": \"Av. Paulista, 1000 - São Paulo/SP\",\n  \"closingTime\": \"23:01:03.346Z\",\n  \"kitchenTypeId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"Pizzaria Napoli\",\n  \"openingTime\": \"01:35:21.392Z\",\n  \"ownerId\": \"550e8400-e29b-41d4-a716-446655440000\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{baseUrl}}/api/v1/restaurants",
+										"description": "Creates a new restaurant associated with an OWNER user and a kitchen type."
+									},
+									"response": [
+										{
+											"name": "Restaurant successfully created",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"address\": \"Av. Paulista, 1000 - São Paulo/SP\",\n  \"closingTime\": \"23:01:03.346Z\",\n  \"kitchenTypeId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"Pizzaria Napoli\",\n  \"openingTime\": \"01:35:21.392Z\",\n  \"ownerId\": \"550e8400-e29b-41d4-a716-446655440000\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": "{{baseUrl}}/api/v1/restaurants"
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"Pizzaria Napoli\",\n  \"address\": \"Av. Paulista, 1000 - São Paulo/SP\",\n  \"kitchenType\": \"ITALIAN\",\n  \"openingTime\": \"08:00\",\n  \"closingTime\": \"22:00\",\n  \"ownerName\": \"Geová Junior\",\n  \"menuItems\": [\n    {\n      \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n      \"name\": \"Cheeseburger\",\n      \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n      \"price\": 4468.847035892858,\n      \"availableOnlyInRestaurant\": true,\n      \"imagePath\": \"/images/menu-items/cheeseburger.png\"\n    },\n    {\n      \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n      \"name\": \"Cheeseburger\",\n      \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n      \"price\": 3081.092125210665,\n      \"availableOnlyInRestaurant\": true,\n      \"imagePath\": \"/images/menu-items/cheeseburger.png\"\n    }\n  ]\n}"
+										},
+										{
+											"name": "Invalid request",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"address\": \"Av. Paulista, 1000 - São Paulo/SP\",\n  \"closingTime\": \"23:01:03.346Z\",\n  \"kitchenTypeId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"Pizzaria Napoli\",\n  \"openingTime\": \"01:35:21.392Z\",\n  \"ownerId\": \"550e8400-e29b-41d4-a716-446655440000\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": "{{baseUrl}}/api/v1/restaurants"
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Kitchen type or owner not found",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"address\": \"Av. Paulista, 1000 - São Paulo/SP\",\n  \"closingTime\": \"23:01:03.346Z\",\n  \"kitchenTypeId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"Pizzaria Napoli\",\n  \"openingTime\": \"01:35:21.392Z\",\n  \"ownerId\": \"550e8400-e29b-41d4-a716-446655440000\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": "{{baseUrl}}/api/v1/restaurants"
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "The selected user is not allowed to own a restaurant",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"address\": \"Av. Paulista, 1000 - São Paulo/SP\",\n  \"closingTime\": \"23:01:03.346Z\",\n  \"kitchenTypeId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"Pizzaria Napoli\",\n  \"openingTime\": \"01:35:21.392Z\",\n  \"ownerId\": \"550e8400-e29b-41d4-a716-446655440000\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": "{{baseUrl}}/api/v1/restaurants"
+											},
+											"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+											"code": 422,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "menu-items",
+							"item": [
+								{
+									"name": "{id}",
+									"item": [
+										{
+											"name": "Find menu item by ID",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/menu-items/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"menu-items",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "550e8400-e29b-41d4-a716-446655440000",
+															"description": "Menu item identifier"
+														}
+													]
+												},
+												"description": "Returns a menu item using its unique identifier."
+											},
+											"response": [
+												{
+													"name": "Menu item found",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "*/*"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/menu-items/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"menu-items",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "*/*"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"Cheeseburger\",\n  \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n  \"price\": 4954.360902441346,\n  \"availableOnlyInRestaurant\": true,\n  \"imagePath\": \"/images/menu-items/cheeseburger.png\"\n}"
+												},
+												{
+													"name": "Menu item not found",
+													"originalRequest": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/menu-items/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"menu-items",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "Not Found",
+													"code": 404,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										},
+										{
+											"name": "Update an existing menu item",
+											"request": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n  \"imagePath\": \"/images/menu-items/cheeseburger.png\",\n  \"name\": \"Cheeseburger\",\n  \"price\": 6729.082968514048,\n  \"restaurantId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"availableOnlyInRestaurant\": true\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/menu-items/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"menu-items",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "550e8400-e29b-41d4-a716-446655440000",
+															"description": "Menu item identifier"
+														}
+													]
+												},
+												"description": "Updates the information of an existing menu item."
+											},
+											"response": [
+												{
+													"name": "Menu item successfully updated",
+													"originalRequest": {
+														"method": "PUT",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															},
+															{
+																"key": "Accept",
+																"value": "*/*"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n  \"imagePath\": \"/images/menu-items/cheeseburger.png\",\n  \"name\": \"Cheeseburger\",\n  \"price\": 6729.082968514048,\n  \"restaurantId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"availableOnlyInRestaurant\": true\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/menu-items/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"menu-items",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "*/*"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"Cheeseburger\",\n  \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n  \"price\": 4954.360902441346,\n  \"availableOnlyInRestaurant\": true,\n  \"imagePath\": \"/images/menu-items/cheeseburger.png\"\n}"
+												},
+												{
+													"name": "Invalid request",
+													"originalRequest": {
+														"method": "PUT",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n  \"imagePath\": \"/images/menu-items/cheeseburger.png\",\n  \"name\": \"Cheeseburger\",\n  \"price\": 6729.082968514048,\n  \"restaurantId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"availableOnlyInRestaurant\": true\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/menu-items/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"menu-items",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "Bad Request",
+													"code": 400,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												},
+												{
+													"name": "Menu item or restaurant not found",
+													"originalRequest": {
+														"method": "PUT",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n  \"imagePath\": \"/images/menu-items/cheeseburger.png\",\n  \"name\": \"Cheeseburger\",\n  \"price\": 6729.082968514048,\n  \"restaurantId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"availableOnlyInRestaurant\": true\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/menu-items/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"menu-items",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "Not Found",
+													"code": 404,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												},
+												{
+													"name": "Invalid menu item business rule",
+													"originalRequest": {
+														"method": "PUT",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n  \"imagePath\": \"/images/menu-items/cheeseburger.png\",\n  \"name\": \"Cheeseburger\",\n  \"price\": 6729.082968514048,\n  \"restaurantId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"availableOnlyInRestaurant\": true\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/menu-items/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"menu-items",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+													"code": 422,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										},
+										{
+											"name": "Delete a menu item",
+											"request": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/menu-items/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"menu-items",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "550e8400-e29b-41d4-a716-446655440000",
+															"description": "Menu item identifier"
+														}
+													]
+												},
+												"description": "Deletes a menu item by its unique identifier."
+											},
+											"response": [
+												{
+													"name": "Menu item successfully deleted",
+													"originalRequest": {
+														"method": "DELETE",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/menu-items/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"menu-items",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "No Content",
+													"code": 204,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												},
+												{
+													"name": "Menu item not found",
+													"originalRequest": {
+														"method": "DELETE",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/menu-items/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"menu-items",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "Not Found",
+													"code": 404,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "List all menu items",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": "{{baseUrl}}/api/v1/menu-items",
+										"description": "Returns all registered menu items."
+									},
+									"response": [
+										{
+											"name": "Menu items successfully returned",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": "{{baseUrl}}/api/v1/menu-items"
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "[\n  {\n    \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n    \"name\": \"Cheeseburger\",\n    \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n    \"price\": 5660.362915275172,\n    \"availableOnlyInRestaurant\": true,\n    \"imagePath\": \"/images/menu-items/cheeseburger.png\"\n  },\n  {\n    \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n    \"name\": \"Cheeseburger\",\n    \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n    \"price\": 6106.657097516666,\n    \"availableOnlyInRestaurant\": true,\n    \"imagePath\": \"/images/menu-items/cheeseburger.png\"\n  }\n]"
+										}
+									]
+								},
+								{
+									"name": "Create a new menu item",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n  \"imagePath\": \"/images/menu-items/cheeseburger.png\",\n  \"name\": \"Cheeseburger\",\n  \"price\": 6729.082968514048,\n  \"restaurantId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"availableOnlyInRestaurant\": true\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{baseUrl}}/api/v1/menu-items",
+										"description": "Creates a new menu item associated with a restaurant."
+									},
+									"response": [
+										{
+											"name": "Menu item successfully created",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n  \"imagePath\": \"/images/menu-items/cheeseburger.png\",\n  \"name\": \"Cheeseburger\",\n  \"price\": 6729.082968514048,\n  \"restaurantId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"availableOnlyInRestaurant\": true\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": "{{baseUrl}}/api/v1/menu-items"
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"Cheeseburger\",\n  \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n  \"price\": 4954.360902441346,\n  \"availableOnlyInRestaurant\": true,\n  \"imagePath\": \"/images/menu-items/cheeseburger.png\"\n}"
+										},
+										{
+											"name": "Invalid request",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n  \"imagePath\": \"/images/menu-items/cheeseburger.png\",\n  \"name\": \"Cheeseburger\",\n  \"price\": 6729.082968514048,\n  \"restaurantId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"availableOnlyInRestaurant\": true\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": "{{baseUrl}}/api/v1/menu-items"
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Restaurant not found",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n  \"imagePath\": \"/images/menu-items/cheeseburger.png\",\n  \"name\": \"Cheeseburger\",\n  \"price\": 6729.082968514048,\n  \"restaurantId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"availableOnlyInRestaurant\": true\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": "{{baseUrl}}/api/v1/menu-items"
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Invalid menu item business rule",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n  \"imagePath\": \"/images/menu-items/cheeseburger.png\",\n  \"name\": \"Cheeseburger\",\n  \"price\": 6729.082968514048,\n  \"restaurantId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"availableOnlyInRestaurant\": true\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": "{{baseUrl}}/api/v1/menu-items"
+											},
+											"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+											"code": 422,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "kitchen-types",
+							"item": [
+								{
+									"name": "{id}",
+									"item": [
+										{
+											"name": "Find kitchen type by ID",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/kitchen-types/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"kitchen-types",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "550e8400-e29b-41d4-a716-446655440000",
+															"description": "Kitchen type identifier"
+														}
+													]
+												},
+												"description": "Returns a kitchen type using its unique identifier."
+											},
+											"response": [
+												{
+													"name": "Kitchen type found",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "*/*"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/kitchen-types/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"kitchen-types",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "*/*"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"ITALIAN\"\n}"
+												},
+												{
+													"name": "Kitchen type not found",
+													"originalRequest": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/kitchen-types/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"kitchen-types",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "Not Found",
+													"code": 404,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										},
+										{
+											"name": "Update an existing kitchen type",
+											"request": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"name\": \"ITALIAN\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/kitchen-types/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"kitchen-types",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "550e8400-e29b-41d4-a716-446655440000",
+															"description": "Kitchen type identifier"
+														}
+													]
+												},
+												"description": "Updates an existing kitchen type."
+											},
+											"response": [
+												{
+													"name": "Kitchen type successfully updated",
+													"originalRequest": {
+														"method": "PUT",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															},
+															{
+																"key": "Accept",
+																"value": "*/*"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"name\": \"ITALIAN\"\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/kitchen-types/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"kitchen-types",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "*/*"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"ITALIAN\"\n}"
+												},
+												{
+													"name": "Invalid request",
+													"originalRequest": {
+														"method": "PUT",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"name\": \"ITALIAN\"\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/kitchen-types/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"kitchen-types",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "Bad Request",
+													"code": 400,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												},
+												{
+													"name": "Kitchen type not found",
+													"originalRequest": {
+														"method": "PUT",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"name\": \"ITALIAN\"\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/kitchen-types/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"kitchen-types",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "Not Found",
+													"code": 404,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												},
+												{
+													"name": "Kitchen type already exists",
+													"originalRequest": {
+														"method": "PUT",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"name\": \"ITALIAN\"\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/kitchen-types/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"kitchen-types",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "Conflict",
+													"code": 409,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										},
+										{
+											"name": "Delete a kitchen type",
+											"request": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/kitchen-types/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"kitchen-types",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "550e8400-e29b-41d4-a716-446655440000",
+															"description": "Kitchen type identifier"
+														}
+													]
+												},
+												"description": "Deletes a kitchen type by its identifier."
+											},
+											"response": [
+												{
+													"name": "Kitchen type successfully deleted",
+													"originalRequest": {
+														"method": "DELETE",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/kitchen-types/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"kitchen-types",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "No Content",
+													"code": 204,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												},
+												{
+													"name": "Kitchen type not found",
+													"originalRequest": {
+														"method": "DELETE",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/kitchen-types/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"kitchen-types",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "Not Found",
+													"code": 404,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "List all kitchen types",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": "{{baseUrl}}/api/v1/kitchen-types",
+										"description": "Returns all registered kitchen types."
+									},
+									"response": [
+										{
+											"name": "Kitchen types successfully returned",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": "{{baseUrl}}/api/v1/kitchen-types"
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "[\n  {\n    \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n    \"name\": \"ITALIAN\"\n  },\n  {\n    \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n    \"name\": \"ITALIAN\"\n  }\n]"
+										}
+									]
+								},
+								{
+									"name": "Create a new kitchen type",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"ITALIAN\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{baseUrl}}/api/v1/kitchen-types",
+										"description": "Creates a new kitchen type."
+									},
+									"response": [
+										{
+											"name": "Kitchen type successfully created",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"name\": \"ITALIAN\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": "{{baseUrl}}/api/v1/kitchen-types"
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"ITALIAN\"\n}"
+										},
+										{
+											"name": "Invalid request",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"name\": \"ITALIAN\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": "{{baseUrl}}/api/v1/kitchen-types"
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Kitchen type already exists",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"name\": \"ITALIAN\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": "{{baseUrl}}/api/v1/kitchen-types"
+											},
+											"status": "Conflict",
+											"code": 409,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080"
+		}
+	]
+}

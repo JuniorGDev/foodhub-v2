@@ -101,7 +101,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(InvalidMenuItemPriceException.class)
     public ResponseEntity<ProblemDetail> handleInvalidMenuItemPrice(InvalidMenuItemPriceException e) {
         return buildResponse(
-                HttpStatus.BAD_REQUEST,
+                HttpStatus.UNPROCESSABLE_ENTITY,
                 "Invalid menu item price",
                 e.getMessage()
         );
