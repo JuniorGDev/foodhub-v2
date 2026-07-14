@@ -9,6 +9,9 @@
 
 REST API for restaurant management system, built with Java 21 and Spring Boot 3 following Clean Architecture principles.
 
+<!-- Banner placeholder -->
+<!-- <img src="path/to/banner.png" alt="FoodHub Banner" width="100%"> -->
+
 ## Sobre o projeto
 
 FoodHub é um sistema de gerenciamento de restaurantes que permite:
@@ -97,7 +100,7 @@ shared/
 - **Email único**: O email do usuário deve ser único no sistema
 - **Normalização de email**: Emails são automaticamente convertidos para lowercase
 - **Nome de UserType**: Nomes de tipos de usuário são normalizados para UPPERCASE e não podem ser duplicados
-- **Nome de KitchenType**: Nomes de tipos de cozinha são normalizados para lowercase e não podem ser duplicados
+- **Nome de KitchenType**: Nomes de tipos de cozinha são normalizados para UPPERCASE e não podem ser duplicados
 - **Preço do MenuItem**: O preço deve ser maior que zero
 - **Horário de funcionamento**: O horário de abertura deve ser anterior ao horário de fechamento
 - **Campos obrigatórios**: Todos os campos obrigatórios são validados via Bean Validation
@@ -335,8 +338,9 @@ O projeto possui uma suíte completa de testes organizados em três categorias:
 
 ## Autores
 
-- **Junior Geová**  
+- **Junior Geová**
   GitHub: https://github.com/JuniorGDev
 
-- **Wesley Batista**  
+- **Wesley Batista**
   GitHub: https://github.com/wesleysbdev
+
