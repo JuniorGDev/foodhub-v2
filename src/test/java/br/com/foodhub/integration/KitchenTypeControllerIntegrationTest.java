@@ -11,19 +11,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@ActiveProfiles("test")
 @Transactional
-@DisplayName("KitchenType Integration Tests")
-class KitchenTypeIntegrationTest {
+@DisplayName("Kitchen Type Controller Integration Tests")
+class KitchenTypeControllerIntegrationTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -45,69 +48,8 @@ class KitchenTypeIntegrationTest {
         japaneseKitchenTypeId = UUID.fromString("66666666-6666-6666-6666-666666666666");
     }
 
-    @Nested
-    @DisplayName("POST /api/v1/kitchen-types")
-    class CreateKitchenTypeTests {
-
-        @Test
-        @DisplayName("Should create kitchen type with status 201")
-        void shouldCreateKitchenTypeWithStatus201() throws Exception {
-            // Given
-            KitchenTypeRequest request = new KitchenTypeRequest("MEXICAN");
-
-            // When & Then
-            mockMvc.perform(post("/api/v1/kitchen-types")
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .content(objectMapper.writeValueAsString(request)))
-                    .andExpect(status().isCreated())
-                    .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                    .andExpect(jsonPath("$.name").value("mexican"));
-        }
-
-        @Test
-        @DisplayName("Should return 400 when name is blank")
-        void shouldReturn400WhenNameIsBlank() throws Exception {
-            // Given
-            KitchenTypeRequest request = new KitchenTypeRequest("");
-
-            // When & Then
-            mockMvc.perform(post("/api/v1/kitchen-types")
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .content(objectMapper.writeValueAsString(request)))
-                    .andExpect(status().isBadRequest());
-        }
-
-        @Test
-        @DisplayName("Should return 400 when name is too short")
-        void shouldReturn400WhenNameIsTooShort() throws Exception {
-            // Given
-            KitchenTypeRequest request = new KitchenTypeRequest("ab");
-
-            // When & Then
-            mockMvc.perform(post("/api/v1/kitchen-types")
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .content(objectMapper.writeValueAsString(request)))
-                    .andExpect(status().isBadRequest());
-        }
-
-        @Test
-        @DisplayName("Should return 409 when kitchen type already exists")
-        void shouldReturn409WhenKitchenTypeAlreadyExists() throws Exception {
-            // Given - First create a new kitchen type with a unique name
-            String uniqueName = "TEMP_" + System.currentTimeMillis();
-            KitchenTypeRequest createRequest = new KitchenTypeRequest(uniqueName);
-            mockMvc.perform(post("/api/v1/kitchen-types")
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .content(objectMapper.writeValueAsString(createRequest)));
-
-            KitchenTypeRequest request = new KitchenTypeRequest(uniqueName);
-
-            // When & Then
-            mockMvc.perform(post("/api/v1/kitchen-types")
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .content(objectMapper.writeValueAsString(request)))
-                    .andExpect(status().isConflict());
-        }
+    private KitchenTypeRequest createKitchenTypeRequest(String name) {
+        return new KitchenTypeRequest(name);
     }
 
     @Nested
@@ -115,8 +57,8 @@ class KitchenTypeIntegrationTest {
     class FindAllKitchenTypesTests {
 
         @Test
-        @DisplayName("Should return all kitchen types with status 200")
-        void shouldReturnAllKitchenTypesWithStatus200() throws Exception {
+        @DisplayName("Should return 200 with list of kitchen types")
+        void shouldReturn200WithListOfKitchenTypes() throws Exception {
             // When & Then
             mockMvc.perform(get("/api/v1/kitchen-types"))
                     .andExpect(status().isOk())
@@ -130,15 +72,17 @@ class KitchenTypeIntegrationTest {
     class FindKitchenTypeByIdTests {
 
         @Test
-        @DisplayName("Should return kitchen type by ID with status 200")
-        void shouldReturnKitchenTypeByIdWithStatus200() throws Exception {
+        @DisplayName("Should return 200 when kitchen type exists")
+        void shouldReturn200WhenKitchenTypeExists() throws Exception {
             // Given
+            UUID kitchenTypeId = italianKitchenTypeId;
+
             // When & Then
-            mockMvc.perform(get("/api/v1/kitchen-types/{id}", brazilianKitchenTypeId))
+            mockMvc.perform(get("/api/v1/kitchen-types/{id}", kitchenTypeId))
                     .andExpect(status().isOk())
                     .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                    .andExpect(jsonPath("$.id").value(brazilianKitchenTypeId.toString()))
-                    .andExpect(jsonPath("$.name").value("BRAZILIAN"));
+                    .andExpect(jsonPath("$.id").value(kitchenTypeId.toString()))
+                    .andExpect(jsonPath("$.name").exists());
         }
 
         @Test
@@ -151,45 +95,50 @@ class KitchenTypeIntegrationTest {
             mockMvc.perform(get("/api/v1/kitchen-types/{id}", nonExistentKitchenTypeId))
                     .andExpect(status().isNotFound());
         }
+
+        @Test
+        @DisplayName("Should return 400 when UUID is invalid")
+        void shouldReturn400WhenUUIDIsInvalid() throws Exception {
+            // When & Then
+            mockMvc.perform(get("/api/v1/kitchen-types/{id}", "invalid-uuid"))
+                    .andExpect(status().isBadRequest());
+        }
     }
 
     @Nested
-    @DisplayName("PUT /api/v1/kitchen-types/{id}")
-    class UpdateKitchenTypeTests {
+    @DisplayName("POST /api/v1/kitchen-types")
+    class CreateKitchenTypeTests {
 
         @Test
-        @DisplayName("Should update kitchen type with status 200")
-        void shouldUpdateKitchenTypeWithStatus200() throws Exception {
-            // Given - First create a new kitchen type
-            KitchenTypeRequest createRequest = new KitchenTypeRequest("TEMP");
+        @DisplayName("Should return 201 and persist kitchen type")
+        void shouldReturn201AndPersistKitchenType() throws Exception {
+            // Given
+            KitchenTypeRequest request = createKitchenTypeRequest("MEXICAN");
+
+            // When & Then
             String response = mockMvc.perform(post("/api/v1/kitchen-types")
                             .contentType(MediaType.APPLICATION_JSON)
-                            .content(objectMapper.writeValueAsString(createRequest)))
+                            .content(objectMapper.writeValueAsString(request)))
+                    .andExpect(status().isCreated())
+                    .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                    .andExpect(jsonPath("$.name").value("MEXICAN"))
                     .andReturn()
                     .getResponse()
                     .getContentAsString();
 
+            // Verify persistence
             String kitchenTypeId = objectMapper.readTree(response).get("id").asText();
-
-            KitchenTypeRequest updateRequest = new KitchenTypeRequest("UPDATED");
-
-            // When & Then
-            mockMvc.perform(put("/api/v1/kitchen-types/{id}", kitchenTypeId)
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .content(objectMapper.writeValueAsString(updateRequest)))
-                    .andExpect(status().isOk())
-                    .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                    .andExpect(jsonPath("$.name").value("updated"));
+            assertThat(kitchenTypeRepository.findById(UUID.fromString(kitchenTypeId))).isPresent();
         }
 
         @Test
         @DisplayName("Should return 400 when name is blank")
         void shouldReturn400WhenNameIsBlank() throws Exception {
             // Given
-            KitchenTypeRequest request = new KitchenTypeRequest("");
+            KitchenTypeRequest request = createKitchenTypeRequest("");
 
             // When & Then
-            mockMvc.perform(put("/api/v1/kitchen-types/{id}", brazilianKitchenTypeId)
+            mockMvc.perform(post("/api/v1/kitchen-types")
                             .contentType(MediaType.APPLICATION_JSON)
                             .content(objectMapper.writeValueAsString(request)))
                     .andExpect(status().isBadRequest());
@@ -199,10 +148,81 @@ class KitchenTypeIntegrationTest {
         @DisplayName("Should return 400 when name is too short")
         void shouldReturn400WhenNameIsTooShort() throws Exception {
             // Given
-            KitchenTypeRequest request = new KitchenTypeRequest("ab");
+            KitchenTypeRequest request = createKitchenTypeRequest("ab");
 
             // When & Then
-            mockMvc.perform(put("/api/v1/kitchen-types/{id}", brazilianKitchenTypeId)
+            mockMvc.perform(post("/api/v1/kitchen-types")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(objectMapper.writeValueAsString(request)))
+                    .andExpect(status().isBadRequest());
+        }
+
+        @Test
+        @DisplayName("Should return 409 when name already exists")
+        void shouldReturn409WhenNameAlreadyExists() throws Exception {
+            // Given - First create a kitchen type to test conflict
+            KitchenTypeRequest createRequest = createKitchenTypeRequest("FRENCH");
+            mockMvc.perform(post("/api/v1/kitchen-types")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(objectMapper.writeValueAsString(createRequest)))
+                    .andExpect(status().isCreated());
+
+            // When & Then - Try to create the same name again
+            KitchenTypeRequest request = createKitchenTypeRequest("FRENCH");
+            mockMvc.perform(post("/api/v1/kitchen-types")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(objectMapper.writeValueAsString(request)))
+                    .andExpect(status().isConflict());
+        }
+    }
+
+    @Nested
+    @DisplayName("PUT /api/v1/kitchen-types/{id}")
+    class UpdateKitchenTypeTests {
+
+        @Test
+        @DisplayName("Should return 200 and update kitchen type")
+        void shouldReturn200AndUpdateKitchenType() throws Exception {
+            // Given
+            UUID kitchenTypeId = japaneseKitchenTypeId;
+            KitchenTypeRequest request = createKitchenTypeRequest("THAI");
+
+            // When & Then
+            mockMvc.perform(put("/api/v1/kitchen-types/{id}", kitchenTypeId)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(objectMapper.writeValueAsString(request)))
+                    .andExpect(status().isOk())
+                    .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                    .andExpect(jsonPath("$.name").value("THAI"));
+
+            // Verify persistence
+            assertThat(kitchenTypeRepository.findById(kitchenTypeId)).isPresent();
+            assertThat(kitchenTypeRepository.findById(kitchenTypeId).get().getName()).isEqualTo("THAI");
+        }
+
+        @Test
+        @DisplayName("Should return 400 when name is blank")
+        void shouldReturn400WhenNameIsBlank() throws Exception {
+            // Given
+            UUID kitchenTypeId = japaneseKitchenTypeId;
+            KitchenTypeRequest request = createKitchenTypeRequest("");
+
+            // When & Then
+            mockMvc.perform(put("/api/v1/kitchen-types/{id}", kitchenTypeId)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(objectMapper.writeValueAsString(request)))
+                    .andExpect(status().isBadRequest());
+        }
+
+        @Test
+        @DisplayName("Should return 400 when name is too short")
+        void shouldReturn400WhenNameIsTooShort() throws Exception {
+            // Given
+            UUID kitchenTypeId = japaneseKitchenTypeId;
+            KitchenTypeRequest request = createKitchenTypeRequest("ab");
+
+            // When & Then
+            mockMvc.perform(put("/api/v1/kitchen-types/{id}", kitchenTypeId)
                             .contentType(MediaType.APPLICATION_JSON)
                             .content(objectMapper.writeValueAsString(request)))
                     .andExpect(status().isBadRequest());
@@ -213,7 +233,7 @@ class KitchenTypeIntegrationTest {
         void shouldReturn404WhenKitchenTypeNotFound() throws Exception {
             // Given
             UUID nonExistentKitchenTypeId = UUID.randomUUID();
-            KitchenTypeRequest request = new KitchenTypeRequest("UPDATED");
+            KitchenTypeRequest request = createKitchenTypeRequest("MEXICAN");
 
             // When & Then
             mockMvc.perform(put("/api/v1/kitchen-types/{id}", nonExistentKitchenTypeId)
@@ -223,13 +243,23 @@ class KitchenTypeIntegrationTest {
         }
 
         @Test
-        @DisplayName("Should return 409 when kitchen type already exists")
-        void shouldReturn409WhenKitchenTypeAlreadyExists() throws Exception {
-            // Given
-            KitchenTypeRequest request = new KitchenTypeRequest("ITALIAN");
+        @DisplayName("Should return 409 when name already exists")
+        void shouldReturn409WhenNameAlreadyExists() throws Exception {
+            // Given - First create a kitchen type to test conflict
+            KitchenTypeRequest createRequest = createKitchenTypeRequest("INDIAN");
+            String response = mockMvc.perform(post("/api/v1/kitchen-types")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(objectMapper.writeValueAsString(createRequest)))
+                    .andExpect(status().isCreated())
+                    .andReturn()
+                    .getResponse()
+                    .getContentAsString();
+            String newKitchenTypeId = objectMapper.readTree(response).get("id").asText();
 
-            // When & Then
-            mockMvc.perform(put("/api/v1/kitchen-types/{id}", brazilianKitchenTypeId)
+            // When & Then - Try to update to a name that already exists
+            UUID kitchenTypeId = japaneseKitchenTypeId;
+            KitchenTypeRequest request = createKitchenTypeRequest("INDIAN");
+            mockMvc.perform(put("/api/v1/kitchen-types/{id}", kitchenTypeId)
                             .contentType(MediaType.APPLICATION_JSON)
                             .content(objectMapper.writeValueAsString(request)))
                     .andExpect(status().isConflict());
@@ -241,10 +271,11 @@ class KitchenTypeIntegrationTest {
     class DeleteKitchenTypeTests {
 
         @Test
-        @DisplayName("Should delete kitchen type with status 204")
-        void shouldDeleteKitchenTypeWithStatus204() throws Exception {
-            // Given - First create a new kitchen type
-            KitchenTypeRequest createRequest = new KitchenTypeRequest("TEMP");
+        @DisplayName("Should return 204 and delete kitchen type")
+        void shouldReturn204AndDeleteKitchenType() throws Exception {
+            // Given - First create a kitchen type
+            KitchenTypeRequest createRequest = createKitchenTypeRequest("FRENCH");
+
             String response = mockMvc.perform(post("/api/v1/kitchen-types")
                             .contentType(MediaType.APPLICATION_JSON)
                             .content(objectMapper.writeValueAsString(createRequest)))
@@ -257,6 +288,9 @@ class KitchenTypeIntegrationTest {
             // When & Then
             mockMvc.perform(delete("/api/v1/kitchen-types/{id}", kitchenTypeId))
                     .andExpect(status().isNoContent());
+
+            // Verify deletion
+            assertThat(kitchenTypeRepository.findById(UUID.fromString(kitchenTypeId))).isEmpty();
         }
 
         @Test

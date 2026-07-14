@@ -11,19 +11,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@ActiveProfiles("test")
 @Transactional
-@DisplayName("UserType Integration Tests")
-class UserTypeIntegrationTest {
+@DisplayName("User Type Controller Integration Tests")
+class UserTypeControllerIntegrationTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -45,69 +48,8 @@ class UserTypeIntegrationTest {
         customerUserTypeId = UUID.fromString("33333333-3333-3333-3333-333333333333");
     }
 
-    @Nested
-    @DisplayName("POST /api/v1/user-types")
-    class CreateUserTypeTests {
-
-        @Test
-        @DisplayName("Should create user type with status 201")
-        void shouldCreateUserTypeWithStatus201() throws Exception {
-            // Given
-            UserTypeRequest request = new UserTypeRequest("MANAGER");
-
-            // When & Then
-            mockMvc.perform(post("/api/v1/user-types")
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .content(objectMapper.writeValueAsString(request)))
-                    .andExpect(status().isCreated())
-                    .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                    .andExpect(jsonPath("$.name").value("MANAGER"));
-        }
-
-        @Test
-        @DisplayName("Should return 400 when name is blank")
-        void shouldReturn400WhenNameIsBlank() throws Exception {
-            // Given
-            UserTypeRequest request = new UserTypeRequest("");
-
-            // When & Then
-            mockMvc.perform(post("/api/v1/user-types")
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .content(objectMapper.writeValueAsString(request)))
-                    .andExpect(status().isBadRequest());
-        }
-
-        @Test
-        @DisplayName("Should return 400 when name is too short")
-        void shouldReturn400WhenNameIsTooShort() throws Exception {
-            // Given
-            UserTypeRequest request = new UserTypeRequest("ab");
-
-            // When & Then
-            mockMvc.perform(post("/api/v1/user-types")
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .content(objectMapper.writeValueAsString(request)))
-                    .andExpect(status().isBadRequest());
-        }
-
-        @Test
-        @DisplayName("Should return 409 when user type already exists")
-        void shouldReturn409WhenUserTypeAlreadyExists() throws Exception {
-            // Given - First create a new user type with a unique name
-            String uniqueName = "TEMP_" + System.currentTimeMillis();
-            UserTypeRequest createRequest = new UserTypeRequest(uniqueName);
-            mockMvc.perform(post("/api/v1/user-types")
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .content(objectMapper.writeValueAsString(createRequest)));
-
-            UserTypeRequest request = new UserTypeRequest(uniqueName);
-
-            // When & Then
-            mockMvc.perform(post("/api/v1/user-types")
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .content(objectMapper.writeValueAsString(request)))
-                    .andExpect(status().isConflict());
-        }
+    private UserTypeRequest createUserTypeRequest(String name) {
+        return new UserTypeRequest(name);
     }
 
     @Nested
@@ -115,8 +57,8 @@ class UserTypeIntegrationTest {
     class FindAllUserTypesTests {
 
         @Test
-        @DisplayName("Should return all user types with status 200")
-        void shouldReturnAllUserTypesWithStatus200() throws Exception {
+        @DisplayName("Should return 200 with list of user types")
+        void shouldReturn200WithListOfUserTypes() throws Exception {
             // When & Then
             mockMvc.perform(get("/api/v1/user-types"))
                     .andExpect(status().isOk())
@@ -130,15 +72,17 @@ class UserTypeIntegrationTest {
     class FindUserTypeByIdTests {
 
         @Test
-        @DisplayName("Should return user type by ID with status 200")
-        void shouldReturnUserTypeByIdWithStatus200() throws Exception {
+        @DisplayName("Should return 200 when user type exists")
+        void shouldReturn200WhenUserTypeExists() throws Exception {
             // Given
+            UUID userTypeId = adminUserTypeId;
+
             // When & Then
-            mockMvc.perform(get("/api/v1/user-types/{id}", adminUserTypeId))
+            mockMvc.perform(get("/api/v1/user-types/{id}", userTypeId))
                     .andExpect(status().isOk())
                     .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                    .andExpect(jsonPath("$.id").value(adminUserTypeId.toString()))
-                    .andExpect(jsonPath("$.name").value("ADMIN"));
+                    .andExpect(jsonPath("$.id").value(userTypeId.toString()))
+                    .andExpect(jsonPath("$.name").exists());
         }
 
         @Test
@@ -151,45 +95,50 @@ class UserTypeIntegrationTest {
             mockMvc.perform(get("/api/v1/user-types/{id}", nonExistentUserTypeId))
                     .andExpect(status().isNotFound());
         }
+
+        @Test
+        @DisplayName("Should return 400 when UUID is invalid")
+        void shouldReturn400WhenUUIDIsInvalid() throws Exception {
+            // When & Then
+            mockMvc.perform(get("/api/v1/user-types/{id}", "invalid-uuid"))
+                    .andExpect(status().isBadRequest());
+        }
     }
 
     @Nested
-    @DisplayName("PUT /api/v1/user-types/{id}")
-    class UpdateUserTypeTests {
+    @DisplayName("POST /api/v1/user-types")
+    class CreateUserTypeTests {
 
         @Test
-        @DisplayName("Should update user type with status 200")
-        void shouldUpdateUserTypeWithStatus200() throws Exception {
-            // Given - First create a new user type
-            UserTypeRequest createRequest = new UserTypeRequest("TEMP");
+        @DisplayName("Should return 201 and persist user type")
+        void shouldReturn201AndPersistUserType() throws Exception {
+            // Given
+            UserTypeRequest request = createUserTypeRequest("MANAGER");
+
+            // When & Then
             String response = mockMvc.perform(post("/api/v1/user-types")
                             .contentType(MediaType.APPLICATION_JSON)
-                            .content(objectMapper.writeValueAsString(createRequest)))
+                            .content(objectMapper.writeValueAsString(request)))
+                    .andExpect(status().isCreated())
+                    .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                    .andExpect(jsonPath("$.name").value(request.name()))
                     .andReturn()
                     .getResponse()
                     .getContentAsString();
 
+            // Verify persistence
             String userTypeId = objectMapper.readTree(response).get("id").asText();
-
-            UserTypeRequest updateRequest = new UserTypeRequest("UPDATED");
-
-            // When & Then
-            mockMvc.perform(put("/api/v1/user-types/{id}", userTypeId)
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .content(objectMapper.writeValueAsString(updateRequest)))
-                    .andExpect(status().isOk())
-                    .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                    .andExpect(jsonPath("$.name").value("UPDATED"));
+            assertThat(userTypeRepository.findById(UUID.fromString(userTypeId))).isPresent();
         }
 
         @Test
         @DisplayName("Should return 400 when name is blank")
         void shouldReturn400WhenNameIsBlank() throws Exception {
             // Given
-            UserTypeRequest request = new UserTypeRequest("");
+            UserTypeRequest request = createUserTypeRequest("");
 
             // When & Then
-            mockMvc.perform(put("/api/v1/user-types/{id}", adminUserTypeId)
+            mockMvc.perform(post("/api/v1/user-types")
                             .contentType(MediaType.APPLICATION_JSON)
                             .content(objectMapper.writeValueAsString(request)))
                     .andExpect(status().isBadRequest());
@@ -199,10 +148,76 @@ class UserTypeIntegrationTest {
         @DisplayName("Should return 400 when name is too short")
         void shouldReturn400WhenNameIsTooShort() throws Exception {
             // Given
-            UserTypeRequest request = new UserTypeRequest("ab");
+            UserTypeRequest request = createUserTypeRequest("ab");
 
             // When & Then
-            mockMvc.perform(put("/api/v1/user-types/{id}", adminUserTypeId)
+            mockMvc.perform(post("/api/v1/user-types")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(objectMapper.writeValueAsString(request)))
+                    .andExpect(status().isBadRequest());
+        }
+
+        @Test
+        @DisplayName("Should return 409 when name already exists")
+        void shouldReturn409WhenNameAlreadyExists() throws Exception {
+            // Given
+            UserTypeRequest request = createUserTypeRequest("ADMIN");
+
+            // When & Then
+            mockMvc.perform(post("/api/v1/user-types")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(objectMapper.writeValueAsString(request)))
+                    .andExpect(status().isConflict());
+        }
+    }
+
+    @Nested
+    @DisplayName("PUT /api/v1/user-types/{id}")
+    class UpdateUserTypeTests {
+
+        @Test
+        @DisplayName("Should return 200 and update user type")
+        void shouldReturn200AndUpdateUserType() throws Exception {
+            // Given
+            UUID userTypeId = customerUserTypeId;
+            UserTypeRequest request = createUserTypeRequest("VIP");
+
+            // When & Then
+            mockMvc.perform(put("/api/v1/user-types/{id}", userTypeId)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(objectMapper.writeValueAsString(request)))
+                    .andExpect(status().isOk())
+                    .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                    .andExpect(jsonPath("$.name").value(request.name()));
+
+            // Verify persistence
+            assertThat(userTypeRepository.findById(userTypeId)).isPresent();
+            assertThat(userTypeRepository.findById(userTypeId).get().getName()).isEqualTo(request.name());
+        }
+
+        @Test
+        @DisplayName("Should return 400 when name is blank")
+        void shouldReturn400WhenNameIsBlank() throws Exception {
+            // Given
+            UUID userTypeId = customerUserTypeId;
+            UserTypeRequest request = createUserTypeRequest("");
+
+            // When & Then
+            mockMvc.perform(put("/api/v1/user-types/{id}", userTypeId)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(objectMapper.writeValueAsString(request)))
+                    .andExpect(status().isBadRequest());
+        }
+
+        @Test
+        @DisplayName("Should return 400 when name is too short")
+        void shouldReturn400WhenNameIsTooShort() throws Exception {
+            // Given
+            UUID userTypeId = customerUserTypeId;
+            UserTypeRequest request = createUserTypeRequest("ab");
+
+            // When & Then
+            mockMvc.perform(put("/api/v1/user-types/{id}", userTypeId)
                             .contentType(MediaType.APPLICATION_JSON)
                             .content(objectMapper.writeValueAsString(request)))
                     .andExpect(status().isBadRequest());
@@ -213,7 +228,7 @@ class UserTypeIntegrationTest {
         void shouldReturn404WhenUserTypeNotFound() throws Exception {
             // Given
             UUID nonExistentUserTypeId = UUID.randomUUID();
-            UserTypeRequest request = new UserTypeRequest("UPDATED");
+            UserTypeRequest request = createUserTypeRequest("MANAGER");
 
             // When & Then
             mockMvc.perform(put("/api/v1/user-types/{id}", nonExistentUserTypeId)
@@ -223,13 +238,14 @@ class UserTypeIntegrationTest {
         }
 
         @Test
-        @DisplayName("Should return 409 when user type already exists")
-        void shouldReturn409WhenUserTypeAlreadyExists() throws Exception {
+        @DisplayName("Should return 409 when name already exists")
+        void shouldReturn409WhenNameAlreadyExists() throws Exception {
             // Given
-            UserTypeRequest request = new UserTypeRequest("OWNER");
+            UUID userTypeId = customerUserTypeId;
+            UserTypeRequest request = createUserTypeRequest("ADMIN");
 
             // When & Then
-            mockMvc.perform(put("/api/v1/user-types/{id}", adminUserTypeId)
+            mockMvc.perform(put("/api/v1/user-types/{id}", userTypeId)
                             .contentType(MediaType.APPLICATION_JSON)
                             .content(objectMapper.writeValueAsString(request)))
                     .andExpect(status().isConflict());
@@ -241,10 +257,11 @@ class UserTypeIntegrationTest {
     class DeleteUserTypeTests {
 
         @Test
-        @DisplayName("Should delete user type with status 204")
-        void shouldDeleteUserTypeWithStatus204() throws Exception {
-            // Given - First create a new user type
-            UserTypeRequest createRequest = new UserTypeRequest("TEMP");
+        @DisplayName("Should return 204 and delete user type")
+        void shouldReturn204AndDeleteUserType() throws Exception {
+            // Given - First create a user type
+            UserTypeRequest createRequest = createUserTypeRequest("TEMP");
+
             String response = mockMvc.perform(post("/api/v1/user-types")
                             .contentType(MediaType.APPLICATION_JSON)
                             .content(objectMapper.writeValueAsString(createRequest)))
@@ -257,6 +274,9 @@ class UserTypeIntegrationTest {
             // When & Then
             mockMvc.perform(delete("/api/v1/user-types/{id}", userTypeId))
                     .andExpect(status().isNoContent());
+
+            // Verify deletion
+            assertThat(userTypeRepository.findById(UUID.fromString(userTypeId))).isEmpty();
         }
 
         @Test

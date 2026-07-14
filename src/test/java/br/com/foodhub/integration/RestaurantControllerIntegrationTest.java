@@ -1,6 +1,5 @@
 package br.com.foodhub.integration;
 
-import br.com.foodhub.infrastructure.repository.KitchenTypeRepository;
 import br.com.foodhub.infrastructure.repository.RestaurantRepository;
 import br.com.foodhub.infrastructure.repository.UserRepository;
 import br.com.foodhub.presentation.request.RestaurantRequest;
@@ -13,20 +12,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalTime;
 import java.util.UUID;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@ActiveProfiles("test")
 @Transactional
-@DisplayName("Restaurant Integration Tests")
-class RestaurantIntegrationTest {
+@DisplayName("Restaurant Controller Integration Tests")
+class RestaurantControllerIntegrationTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -38,259 +40,30 @@ class RestaurantIntegrationTest {
     private RestaurantRepository restaurantRepository;
 
     @Autowired
-    private KitchenTypeRepository kitchenTypeRepository;
-
-    @Autowired
     private UserRepository userRepository;
 
     private UUID brazilianKitchenTypeId;
     private UUID italianKitchenTypeId;
     private UUID japaneseKitchenTypeId;
-
-    private UUID adminUserId;
     private UUID ownerUserId;
+    private UUID adminUserId;
     private UUID customerUserId;
+    private UUID existingRestaurantId;
 
     @BeforeEach
     void setUp() {
         brazilianKitchenTypeId = UUID.fromString("44444444-4444-4444-4444-444444444444");
         italianKitchenTypeId = UUID.fromString("55555555-5555-5555-5555-555555555555");
         japaneseKitchenTypeId = UUID.fromString("66666666-6666-6666-6666-666666666666");
-
-        adminUserId = UUID.fromString("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa");
         ownerUserId = UUID.fromString("bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb");
+        adminUserId = UUID.fromString("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa");
         customerUserId = UUID.fromString("cccccccc-cccc-cccc-cccc-cccccccccccc");
+        existingRestaurantId = UUID.fromString("dddddddd-dddd-dddd-dddd-dddddddddddd");
     }
 
-    @Nested
-    @DisplayName("POST /api/v1/restaurants")
-    class CreateRestaurantTests {
-
-        @Test
-        @DisplayName("Should create restaurant with status 201")
-        void shouldCreateRestaurantWithStatus201() throws Exception {
-            // Given
-            RestaurantRequest request = new RestaurantRequest(
-                    "New Restaurant",
-                    brazilianKitchenTypeId,
-                    "123 New St",
-                    LocalTime.of(10, 0),
-                    LocalTime.of(22, 0),
-                    ownerUserId
-            );
-
-            // When & Then
-            mockMvc.perform(post("/api/v1/restaurants")
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .content(objectMapper.writeValueAsString(request)))
-                    .andExpect(status().isCreated())
-                    .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                    .andExpect(jsonPath("$.name").value(request.name()))
-                    .andExpect(jsonPath("$.address").value(request.address()));
-        }
-
-        @Test
-        @DisplayName("Should return 400 when name is blank")
-        void shouldReturn400WhenNameIsBlank() throws Exception {
-            // Given
-            RestaurantRequest request = new RestaurantRequest(
-                    "",
-                    brazilianKitchenTypeId,
-                    "123 New St",
-                    LocalTime.of(10, 0),
-                    LocalTime.of(22, 0),
-                    ownerUserId
-            );
-
-            // When & Then
-            mockMvc.perform(post("/api/v1/restaurants")
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .content(objectMapper.writeValueAsString(request)))
-                    .andExpect(status().isBadRequest());
-        }
-
-        @Test
-        @DisplayName("Should return 400 when name is too short")
-        void shouldReturn400WhenNameIsTooShort() throws Exception {
-            // Given
-            RestaurantRequest request = new RestaurantRequest(
-                    "ab",
-                    brazilianKitchenTypeId,
-                    "123 New St",
-                    LocalTime.of(10, 0),
-                    LocalTime.of(22, 0),
-                    ownerUserId
-            );
-
-            // When & Then
-            mockMvc.perform(post("/api/v1/restaurants")
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .content(objectMapper.writeValueAsString(request)))
-                    .andExpect(status().isBadRequest());
-        }
-
-        @Test
-        @DisplayName("Should return 400 when address is blank")
-        void shouldReturn400WhenAddressIsBlank() throws Exception {
-            // Given
-            RestaurantRequest request = new RestaurantRequest(
-                    "New Restaurant",
-                    brazilianKitchenTypeId,
-                    "",
-                    LocalTime.of(10, 0),
-                    LocalTime.of(22, 0),
-                    ownerUserId
-            );
-
-            // When & Then
-            mockMvc.perform(post("/api/v1/restaurants")
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .content(objectMapper.writeValueAsString(request)))
-                    .andExpect(status().isBadRequest());
-        }
-
-        @Test
-        @DisplayName("Should return 400 when openingTime is null")
-        void shouldReturn400WhenOpeningTimeIsNull() throws Exception {
-            // Given
-            RestaurantRequest request = new RestaurantRequest(
-                    "New Restaurant",
-                    brazilianKitchenTypeId,
-                    "123 New St",
-                    null,
-                    LocalTime.of(22, 0),
-                    ownerUserId
-            );
-
-            // When & Then
-            mockMvc.perform(post("/api/v1/restaurants")
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .content(objectMapper.writeValueAsString(request)))
-                    .andExpect(status().isBadRequest());
-        }
-
-        @Test
-        @DisplayName("Should return 400 when closingTime is null")
-        void shouldReturn400WhenClosingTimeIsNull() throws Exception {
-            // Given
-            RestaurantRequest request = new RestaurantRequest(
-                    "New Restaurant",
-                    brazilianKitchenTypeId,
-                    "123 New St",
-                    LocalTime.of(10, 0),
-                    null,
-                    ownerUserId
-            );
-
-            // When & Then
-            mockMvc.perform(post("/api/v1/restaurants")
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .content(objectMapper.writeValueAsString(request)))
-                    .andExpect(status().isBadRequest());
-        }
-
-        @Test
-        @DisplayName("Should return 400 when kitchenTypeId is null")
-        void shouldReturn400WhenKitchenTypeIdIsNull() throws Exception {
-            // Given
-            RestaurantRequest request = new RestaurantRequest(
-                    "New Restaurant",
-                    null,
-                    "123 New St",
-                    LocalTime.of(10, 0),
-                    LocalTime.of(22, 0),
-                    ownerUserId
-            );
-
-            // When & Then
-            mockMvc.perform(post("/api/v1/restaurants")
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .content(objectMapper.writeValueAsString(request)))
-                    .andExpect(status().isBadRequest());
-        }
-
-        @Test
-        @DisplayName("Should return 400 when ownerId is null")
-        void shouldReturn400WhenOwnerIdIsNull() throws Exception {
-            // Given
-            RestaurantRequest request = new RestaurantRequest(
-                    "New Restaurant",
-                    brazilianKitchenTypeId,
-                    "123 New St",
-                    LocalTime.of(10, 0),
-                    LocalTime.of(22, 0),
-                    null
-            );
-
-            // When & Then
-            mockMvc.perform(post("/api/v1/restaurants")
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .content(objectMapper.writeValueAsString(request)))
-                    .andExpect(status().isBadRequest());
-        }
-
-        @Test
-        @DisplayName("Should return 404 when kitchen type not found")
-        void shouldReturn404WhenKitchenTypeNotFound() throws Exception {
-            // Given
-            UUID nonExistentKitchenTypeId = UUID.randomUUID();
-            RestaurantRequest request = new RestaurantRequest(
-                    "New Restaurant",
-                    nonExistentKitchenTypeId,
-                    "123 New St",
-                    LocalTime.of(10, 0),
-                    LocalTime.of(22, 0),
-                    ownerUserId
-            );
-
-            // When & Then
-            mockMvc.perform(post("/api/v1/restaurants")
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .content(objectMapper.writeValueAsString(request)))
-                    .andExpect(status().isNotFound());
-        }
-
-        @Test
-        @DisplayName("Should return 404 when owner not found")
-        void shouldReturn404WhenOwnerNotFound() throws Exception {
-            // Given
-            UUID nonExistentOwnerId = UUID.randomUUID();
-            RestaurantRequest request = new RestaurantRequest(
-                    "New Restaurant",
-                    brazilianKitchenTypeId,
-                    "123 New St",
-                    LocalTime.of(10, 0),
-                    LocalTime.of(22, 0),
-                    nonExistentOwnerId
-            );
-
-            // When & Then
-            mockMvc.perform(post("/api/v1/restaurants")
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .content(objectMapper.writeValueAsString(request)))
-                    .andExpect(status().isNotFound());
-        }
-
-        @Test
-        @DisplayName("Should return 422 when owner is not OWNER type")
-        void shouldReturn422WhenOwnerIsNotOwnerType() throws Exception {
-            // Given
-            RestaurantRequest request = new RestaurantRequest(
-                    "New Restaurant",
-                    brazilianKitchenTypeId,
-                    "123 New St",
-                    LocalTime.of(10, 0),
-                    LocalTime.of(22, 0),
-                    customerUserId
-            );
-
-            // When & Then
-            mockMvc.perform(post("/api/v1/restaurants")
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .content(objectMapper.writeValueAsString(request)))
-                    .andExpect(status().isUnprocessableEntity());
-        }
-
+    private RestaurantRequest createRestaurantRequest(String name, UUID kitchenTypeId, String address, 
+                                                       LocalTime openingTime, LocalTime closingTime, UUID ownerId) {
+        return new RestaurantRequest(name, kitchenTypeId, address, openingTime, closingTime, ownerId);
     }
 
     @Nested
@@ -298,8 +71,8 @@ class RestaurantIntegrationTest {
     class FindAllRestaurantsTests {
 
         @Test
-        @DisplayName("Should return all restaurants with status 200")
-        void shouldReturnAllRestaurantsWithStatus200() throws Exception {
+        @DisplayName("Should return 200 with list of restaurants")
+        void shouldReturn200WithListOfRestaurants() throws Exception {
             // When & Then
             mockMvc.perform(get("/api/v1/restaurants"))
                     .andExpect(status().isOk())
@@ -313,10 +86,10 @@ class RestaurantIntegrationTest {
     class FindRestaurantByIdTests {
 
         @Test
-        @DisplayName("Should return restaurant by ID with status 200")
-        void shouldReturnRestaurantByIdWithStatus200() throws Exception {
+        @DisplayName("Should return 200 when restaurant exists")
+        void shouldReturn200WhenRestaurantExists() throws Exception {
             // Given
-            UUID restaurantId = UUID.fromString("dddddddd-dddd-dddd-dddd-dddddddddddd");
+            UUID restaurantId = existingRestaurantId;
 
             // When & Then
             mockMvc.perform(get("/api/v1/restaurants/{id}", restaurantId))
@@ -336,6 +109,251 @@ class RestaurantIntegrationTest {
             mockMvc.perform(get("/api/v1/restaurants/{id}", nonExistentRestaurantId))
                     .andExpect(status().isNotFound());
         }
+
+        @Test
+        @DisplayName("Should return 400 when UUID is invalid")
+        void shouldReturn400WhenUUIDIsInvalid() throws Exception {
+            // When & Then
+            mockMvc.perform(get("/api/v1/restaurants/{id}", "invalid-uuid"))
+                    .andExpect(status().isBadRequest());
+        }
+    }
+
+    @Nested
+    @DisplayName("POST /api/v1/restaurants")
+    class CreateRestaurantTests {
+
+        @Test
+        @DisplayName("Should return 201 and persist restaurant")
+        void shouldReturn201AndPersistRestaurant() throws Exception {
+            // Given
+            RestaurantRequest request = createRestaurantRequest(
+                    "New Restaurant",
+                    brazilianKitchenTypeId,
+                    "Rua Nova, 100",
+                    LocalTime.of(10, 0),
+                    LocalTime.of(22, 0),
+                    ownerUserId
+            );
+
+            // When & Then
+            String response = mockMvc.perform(post("/api/v1/restaurants")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(objectMapper.writeValueAsString(request)))
+                    .andExpect(status().isCreated())
+                    .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                    .andExpect(jsonPath("$.name").value(request.name()))
+                    .andExpect(jsonPath("$.address").value(request.address()))
+                    .andReturn()
+                    .getResponse()
+                    .getContentAsString();
+
+            // Verify persistence
+            String restaurantId = objectMapper.readTree(response).get("id").asText();
+            assertThat(restaurantRepository.findById(UUID.fromString(restaurantId))).isPresent();
+        }
+
+        @Test
+        @DisplayName("Should return 400 when name is blank")
+        void shouldReturn400WhenNameIsBlank() throws Exception {
+            // Given
+            RestaurantRequest request = createRestaurantRequest(
+                    "",
+                    brazilianKitchenTypeId,
+                    "Rua Nova, 100",
+                    LocalTime.of(10, 0),
+                    LocalTime.of(22, 0),
+                    ownerUserId
+            );
+
+            // When & Then
+            mockMvc.perform(post("/api/v1/restaurants")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(objectMapper.writeValueAsString(request)))
+                    .andExpect(status().isBadRequest());
+        }
+
+        @Test
+        @DisplayName("Should return 400 when name is too short")
+        void shouldReturn400WhenNameIsTooShort() throws Exception {
+            // Given
+            RestaurantRequest request = createRestaurantRequest(
+                    "ab",
+                    brazilianKitchenTypeId,
+                    "Rua Nova, 100",
+                    LocalTime.of(10, 0),
+                    LocalTime.of(22, 0),
+                    ownerUserId
+            );
+
+            // When & Then
+            mockMvc.perform(post("/api/v1/restaurants")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(objectMapper.writeValueAsString(request)))
+                    .andExpect(status().isBadRequest());
+        }
+
+        @Test
+        @DisplayName("Should return 400 when address is blank")
+        void shouldReturn400WhenAddressIsBlank() throws Exception {
+            // Given
+            RestaurantRequest request = createRestaurantRequest(
+                    "New Restaurant",
+                    brazilianKitchenTypeId,
+                    "",
+                    LocalTime.of(10, 0),
+                    LocalTime.of(22, 0),
+                    ownerUserId
+            );
+
+            // When & Then
+            mockMvc.perform(post("/api/v1/restaurants")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(objectMapper.writeValueAsString(request)))
+                    .andExpect(status().isBadRequest());
+        }
+
+        @Test
+        @DisplayName("Should return 400 when kitchenTypeId is null")
+        void shouldReturn400WhenKitchenTypeIdIsNull() throws Exception {
+            // Given
+            RestaurantRequest request = createRestaurantRequest(
+                    "New Restaurant",
+                    null,
+                    "Rua Nova, 100",
+                    LocalTime.of(10, 0),
+                    LocalTime.of(22, 0),
+                    ownerUserId
+            );
+
+            // When & Then
+            mockMvc.perform(post("/api/v1/restaurants")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(objectMapper.writeValueAsString(request)))
+                    .andExpect(status().isBadRequest());
+        }
+
+        @Test
+        @DisplayName("Should return 400 when openingTime is null")
+        void shouldReturn400WhenOpeningTimeIsNull() throws Exception {
+            // Given
+            RestaurantRequest request = createRestaurantRequest(
+                    "New Restaurant",
+                    brazilianKitchenTypeId,
+                    "Rua Nova, 100",
+                    null,
+                    LocalTime.of(22, 0),
+                    ownerUserId
+            );
+
+            // When & Then
+            mockMvc.perform(post("/api/v1/restaurants")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(objectMapper.writeValueAsString(request)))
+                    .andExpect(status().isBadRequest());
+        }
+
+        @Test
+        @DisplayName("Should return 400 when closingTime is null")
+        void shouldReturn400WhenClosingTimeIsNull() throws Exception {
+            // Given
+            RestaurantRequest request = createRestaurantRequest(
+                    "New Restaurant",
+                    brazilianKitchenTypeId,
+                    "Rua Nova, 100",
+                    LocalTime.of(10, 0),
+                    null,
+                    ownerUserId
+            );
+
+            // When & Then
+            mockMvc.perform(post("/api/v1/restaurants")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(objectMapper.writeValueAsString(request)))
+                    .andExpect(status().isBadRequest());
+        }
+
+        @Test
+        @DisplayName("Should return 400 when ownerId is null")
+        void shouldReturn400WhenOwnerIdIsNull() throws Exception {
+            // Given
+            RestaurantRequest request = createRestaurantRequest(
+                    "New Restaurant",
+                    brazilianKitchenTypeId,
+                    "Rua Nova, 100",
+                    LocalTime.of(10, 0),
+                    LocalTime.of(22, 0),
+                    null
+            );
+
+            // When & Then
+            mockMvc.perform(post("/api/v1/restaurants")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(objectMapper.writeValueAsString(request)))
+                    .andExpect(status().isBadRequest());
+        }
+
+        @Test
+        @DisplayName("Should return 404 when kitchen type not found")
+        void shouldReturn404WhenKitchenTypeNotFound() throws Exception {
+            // Given
+            UUID nonExistentKitchenTypeId = UUID.randomUUID();
+            RestaurantRequest request = createRestaurantRequest(
+                    "New Restaurant",
+                    nonExistentKitchenTypeId,
+                    "Rua Nova, 100",
+                    LocalTime.of(10, 0),
+                    LocalTime.of(22, 0),
+                    ownerUserId
+            );
+
+            // When & Then
+            mockMvc.perform(post("/api/v1/restaurants")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(objectMapper.writeValueAsString(request)))
+                    .andExpect(status().isNotFound());
+        }
+
+        @Test
+        @DisplayName("Should return 404 when owner not found")
+        void shouldReturn404WhenOwnerNotFound() throws Exception {
+            // Given
+            UUID nonExistentOwnerId = UUID.randomUUID();
+            RestaurantRequest request = createRestaurantRequest(
+                    "New Restaurant",
+                    brazilianKitchenTypeId,
+                    "Rua Nova, 100",
+                    LocalTime.of(10, 0),
+                    LocalTime.of(22, 0),
+                    nonExistentOwnerId
+            );
+
+            // When & Then
+            mockMvc.perform(post("/api/v1/restaurants")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(objectMapper.writeValueAsString(request)))
+                    .andExpect(status().isNotFound());
+        }
+
+        @Test
+        @DisplayName("Should return 422 when user is not allowed to own restaurant")
+        void shouldReturn422WhenUserIsNotAllowedToOwnRestaurant() throws Exception {
+            // Given
+            RestaurantRequest request = createRestaurantRequest(
+                    "New Restaurant",
+                    brazilianKitchenTypeId,
+                    "Rua Nova, 100",
+                    LocalTime.of(10, 0),
+                    LocalTime.of(22, 0),
+                    customerUserId
+            );
+
+            // When & Then
+            mockMvc.perform(post("/api/v1/restaurants")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(objectMapper.writeValueAsString(request)))
+                    .andExpect(status().isUnprocessableEntity());
+        }
     }
 
     @Nested
@@ -343,14 +361,14 @@ class RestaurantIntegrationTest {
     class UpdateRestaurantTests {
 
         @Test
-        @DisplayName("Should update restaurant with status 200")
-        void shouldUpdateRestaurantWithStatus200() throws Exception {
+        @DisplayName("Should return 200 and update restaurant")
+        void shouldReturn200AndUpdateRestaurant() throws Exception {
             // Given
-            UUID restaurantId = UUID.fromString("dddddddd-dddd-dddd-dddd-dddddddddddd");
-            RestaurantRequest request = new RestaurantRequest(
+            UUID restaurantId = existingRestaurantId;
+            RestaurantRequest request = createRestaurantRequest(
                     "Updated Restaurant",
-                    italianKitchenTypeId,
-                    "456 Updated St",
+                    brazilianKitchenTypeId,
+                    "Rua Atualizada, 200",
                     LocalTime.of(11, 0),
                     LocalTime.of(23, 0),
                     ownerUserId
@@ -364,17 +382,21 @@ class RestaurantIntegrationTest {
                     .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                     .andExpect(jsonPath("$.name").value(request.name()))
                     .andExpect(jsonPath("$.address").value(request.address()));
+
+            // Verify persistence
+            assertThat(restaurantRepository.findById(restaurantId)).isPresent();
+            assertThat(restaurantRepository.findById(restaurantId).get().getName()).isEqualTo(request.name());
         }
 
         @Test
         @DisplayName("Should return 400 when name is blank")
         void shouldReturn400WhenNameIsBlank() throws Exception {
             // Given
-            UUID restaurantId = UUID.fromString("dddddddd-dddd-dddd-dddd-dddddddddddd");
-            RestaurantRequest request = new RestaurantRequest(
+            UUID restaurantId = existingRestaurantId;
+            RestaurantRequest request = createRestaurantRequest(
                     "",
-                    italianKitchenTypeId,
-                    "456 Updated St",
+                    brazilianKitchenTypeId,
+                    "Rua Atualizada, 200",
                     LocalTime.of(11, 0),
                     LocalTime.of(23, 0),
                     ownerUserId
@@ -391,11 +413,32 @@ class RestaurantIntegrationTest {
         @DisplayName("Should return 400 when address is blank")
         void shouldReturn400WhenAddressIsBlank() throws Exception {
             // Given
-            UUID restaurantId = UUID.fromString("dddddddd-dddd-dddd-dddd-dddddddddddd");
-            RestaurantRequest request = new RestaurantRequest(
+            UUID restaurantId = existingRestaurantId;
+            RestaurantRequest request = createRestaurantRequest(
                     "Updated Restaurant",
-                    italianKitchenTypeId,
+                    brazilianKitchenTypeId,
                     "",
+                    LocalTime.of(11, 0),
+                    LocalTime.of(23, 0),
+                    ownerUserId
+            );
+
+            // When & Then
+            mockMvc.perform(put("/api/v1/restaurants/{id}", restaurantId)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(objectMapper.writeValueAsString(request)))
+                    .andExpect(status().isBadRequest());
+        }
+
+        @Test
+        @DisplayName("Should return 400 when kitchenTypeId is null")
+        void shouldReturn400WhenKitchenTypeIdIsNull() throws Exception {
+            // Given
+            UUID restaurantId = existingRestaurantId;
+            RestaurantRequest request = createRestaurantRequest(
+                    "Updated Restaurant",
+                    null,
+                    "Rua Atualizada, 200",
                     LocalTime.of(11, 0),
                     LocalTime.of(23, 0),
                     ownerUserId
@@ -412,11 +455,11 @@ class RestaurantIntegrationTest {
         @DisplayName("Should return 400 when openingTime is null")
         void shouldReturn400WhenOpeningTimeIsNull() throws Exception {
             // Given
-            UUID restaurantId = UUID.fromString("dddddddd-dddd-dddd-dddd-dddddddddddd");
-            RestaurantRequest request = new RestaurantRequest(
+            UUID restaurantId = existingRestaurantId;
+            RestaurantRequest request = createRestaurantRequest(
                     "Updated Restaurant",
-                    italianKitchenTypeId,
-                    "456 Updated St",
+                    brazilianKitchenTypeId,
+                    "Rua Atualizada, 200",
                     null,
                     LocalTime.of(23, 0),
                     ownerUserId
@@ -433,34 +476,13 @@ class RestaurantIntegrationTest {
         @DisplayName("Should return 400 when closingTime is null")
         void shouldReturn400WhenClosingTimeIsNull() throws Exception {
             // Given
-            UUID restaurantId = UUID.fromString("dddddddd-dddd-dddd-dddd-dddddddddddd");
-            RestaurantRequest request = new RestaurantRequest(
+            UUID restaurantId = existingRestaurantId;
+            RestaurantRequest request = createRestaurantRequest(
                     "Updated Restaurant",
-                    italianKitchenTypeId,
-                    "456 Updated St",
+                    brazilianKitchenTypeId,
+                    "Rua Atualizada, 200",
                     LocalTime.of(11, 0),
                     null,
-                    ownerUserId
-            );
-
-            // When & Then
-            mockMvc.perform(put("/api/v1/restaurants/{id}", restaurantId)
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .content(objectMapper.writeValueAsString(request)))
-                    .andExpect(status().isBadRequest());
-        }
-
-        @Test
-        @DisplayName("Should return 400 when kitchenTypeId is null")
-        void shouldReturn400WhenKitchenTypeIdIsNull() throws Exception {
-            // Given
-            UUID restaurantId = UUID.fromString("dddddddd-dddd-dddd-dddd-dddddddddddd");
-            RestaurantRequest request = new RestaurantRequest(
-                    "Updated Restaurant",
-                    null,
-                    "456 Updated St",
-                    LocalTime.of(11, 0),
-                    LocalTime.of(23, 0),
                     ownerUserId
             );
 
@@ -475,11 +497,11 @@ class RestaurantIntegrationTest {
         @DisplayName("Should return 400 when ownerId is null")
         void shouldReturn400WhenOwnerIdIsNull() throws Exception {
             // Given
-            UUID restaurantId = UUID.fromString("dddddddd-dddd-dddd-dddd-dddddddddddd");
-            RestaurantRequest request = new RestaurantRequest(
+            UUID restaurantId = existingRestaurantId;
+            RestaurantRequest request = createRestaurantRequest(
                     "Updated Restaurant",
-                    italianKitchenTypeId,
-                    "456 Updated St",
+                    brazilianKitchenTypeId,
+                    "Rua Atualizada, 200",
                     LocalTime.of(11, 0),
                     LocalTime.of(23, 0),
                     null
@@ -497,10 +519,10 @@ class RestaurantIntegrationTest {
         void shouldReturn404WhenRestaurantNotFound() throws Exception {
             // Given
             UUID nonExistentRestaurantId = UUID.randomUUID();
-            RestaurantRequest request = new RestaurantRequest(
+            RestaurantRequest request = createRestaurantRequest(
                     "Updated Restaurant",
-                    italianKitchenTypeId,
-                    "456 Updated St",
+                    brazilianKitchenTypeId,
+                    "Rua Atualizada, 200",
                     LocalTime.of(11, 0),
                     LocalTime.of(23, 0),
                     ownerUserId
@@ -517,12 +539,12 @@ class RestaurantIntegrationTest {
         @DisplayName("Should return 404 when kitchen type not found")
         void shouldReturn404WhenKitchenTypeNotFound() throws Exception {
             // Given
-            UUID restaurantId = UUID.fromString("dddddddd-dddd-dddd-dddd-dddddddddddd");
+            UUID restaurantId = existingRestaurantId;
             UUID nonExistentKitchenTypeId = UUID.randomUUID();
-            RestaurantRequest request = new RestaurantRequest(
+            RestaurantRequest request = createRestaurantRequest(
                     "Updated Restaurant",
                     nonExistentKitchenTypeId,
-                    "456 Updated St",
+                    "Rua Atualizada, 200",
                     LocalTime.of(11, 0),
                     LocalTime.of(23, 0),
                     ownerUserId
@@ -539,12 +561,12 @@ class RestaurantIntegrationTest {
         @DisplayName("Should return 404 when owner not found")
         void shouldReturn404WhenOwnerNotFound() throws Exception {
             // Given
-            UUID restaurantId = UUID.fromString("dddddddd-dddd-dddd-dddd-dddddddddddd");
+            UUID restaurantId = existingRestaurantId;
             UUID nonExistentOwnerId = UUID.randomUUID();
-            RestaurantRequest request = new RestaurantRequest(
+            RestaurantRequest request = createRestaurantRequest(
                     "Updated Restaurant",
-                    italianKitchenTypeId,
-                    "456 Updated St",
+                    brazilianKitchenTypeId,
+                    "Rua Atualizada, 200",
                     LocalTime.of(11, 0),
                     LocalTime.of(23, 0),
                     nonExistentOwnerId
@@ -558,14 +580,14 @@ class RestaurantIntegrationTest {
         }
 
         @Test
-        @DisplayName("Should return 422 when owner is not OWNER type")
-        void shouldReturn422WhenOwnerIsNotOwnerType() throws Exception {
+        @DisplayName("Should return 422 when user is not allowed to own restaurant")
+        void shouldReturn422WhenUserIsNotAllowedToOwnRestaurant() throws Exception {
             // Given
-            UUID restaurantId = UUID.fromString("dddddddd-dddd-dddd-dddd-dddddddddddd");
-            RestaurantRequest request = new RestaurantRequest(
+            UUID restaurantId = existingRestaurantId;
+            RestaurantRequest request = createRestaurantRequest(
                     "Updated Restaurant",
-                    italianKitchenTypeId,
-                    "456 Updated St",
+                    brazilianKitchenTypeId,
+                    "Rua Atualizada, 200",
                     LocalTime.of(11, 0),
                     LocalTime.of(23, 0),
                     customerUserId
@@ -577,7 +599,6 @@ class RestaurantIntegrationTest {
                             .content(objectMapper.writeValueAsString(request)))
                     .andExpect(status().isUnprocessableEntity());
         }
-
     }
 
     @Nested
@@ -585,13 +606,13 @@ class RestaurantIntegrationTest {
     class DeleteRestaurantTests {
 
         @Test
-        @DisplayName("Should delete restaurant with status 204")
-        void shouldDeleteRestaurantWithStatus204() throws Exception {
-            // Given - First create a new restaurant
-            RestaurantRequest createRequest = new RestaurantRequest(
+        @DisplayName("Should return 204 and delete restaurant")
+        void shouldReturn204AndDeleteRestaurant() throws Exception {
+            // Given - First create a restaurant
+            RestaurantRequest createRequest = createRestaurantRequest(
                     "To Delete",
                     brazilianKitchenTypeId,
-                    "123 Delete St",
+                    "Rua Delete, 300",
                     LocalTime.of(10, 0),
                     LocalTime.of(22, 0),
                     ownerUserId
@@ -609,6 +630,9 @@ class RestaurantIntegrationTest {
             // When & Then
             mockMvc.perform(delete("/api/v1/restaurants/{id}", restaurantId))
                     .andExpect(status().isNoContent());
+
+            // Verify deletion
+            assertThat(restaurantRepository.findById(UUID.fromString(restaurantId))).isEmpty();
         }
 
         @Test
