@@ -13,19 +13,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@ActiveProfiles("test")
 @Transactional
-@DisplayName("User Integration Tests")
-class UserIntegrationTest {
+@DisplayName("User Controller Integration Tests")
+class UserControllerIntegrationTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -42,12 +45,76 @@ class UserIntegrationTest {
     private UUID adminUserTypeId;
     private UUID ownerUserTypeId;
     private UUID customerUserTypeId;
+    private UUID existingCustomerId;
 
     @BeforeEach
     void setUp() {
         adminUserTypeId = UUID.fromString("11111111-1111-1111-1111-111111111111");
         ownerUserTypeId = UUID.fromString("22222222-2222-2222-2222-222222222222");
         customerUserTypeId = UUID.fromString("33333333-3333-3333-3333-333333333333");
+        existingCustomerId = UUID.fromString("cccccccc-cccc-cccc-cccc-cccccccccccc");
+    }
+
+    private UserRequest createUserRequest(String name, String email, String password, String address, UUID userTypeId) {
+        return new UserRequest(name, email, password, address, userTypeId);
+    }
+
+    private UserUpdateRequest createUserUpdateRequest(String name, String email, String address, UUID userTypeId) {
+        return new UserUpdateRequest(name, email, address, userTypeId);
+    }
+
+    @Nested
+    @DisplayName("GET /api/v1/users")
+    class FindAllUsersTests {
+
+        @Test
+        @DisplayName("Should return 200 with list of users")
+        void shouldReturn200WithListOfUsers() throws Exception {
+            // When & Then
+            mockMvc.perform(get("/api/v1/users"))
+                    .andExpect(status().isOk())
+                    .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                    .andExpect(jsonPath("$").isArray());
+        }
+    }
+
+    @Nested
+    @DisplayName("GET /api/v1/users/{id}")
+    class FindUserByIdTests {
+
+        @Test
+        @DisplayName("Should return 200 when user exists")
+        void shouldReturn200WhenUserExists() throws Exception {
+            // Given
+            UUID userId = existingCustomerId;
+
+            // When & Then
+            mockMvc.perform(get("/api/v1/users/{id}", userId))
+                    .andExpect(status().isOk())
+                    .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                    .andExpect(jsonPath("$.id").value(userId.toString()))
+                    .andExpect(jsonPath("$.name").exists())
+                    .andExpect(jsonPath("$.email").exists());
+        }
+
+        @Test
+        @DisplayName("Should return 404 when user not found")
+        void shouldReturn404WhenUserNotFound() throws Exception {
+            // Given
+            UUID nonExistentUserId = UUID.randomUUID();
+
+            // When & Then
+            mockMvc.perform(get("/api/v1/users/{id}", nonExistentUserId))
+                    .andExpect(status().isNotFound());
+        }
+
+        @Test
+        @DisplayName("Should return 400 when UUID is invalid")
+        void shouldReturn400WhenUUIDIsInvalid() throws Exception {
+            // When & Then
+            mockMvc.perform(get("/api/v1/users/{id}", "invalid-uuid"))
+                    .andExpect(status().isBadRequest());
+        }
     }
 
     @Nested
@@ -55,10 +122,10 @@ class UserIntegrationTest {
     class CreateUserTests {
 
         @Test
-        @DisplayName("Should create user with status 201")
-        void shouldCreateUserWithStatus201() throws Exception {
+        @DisplayName("Should return 201 and persist user")
+        void shouldReturn201AndPersistUser() throws Exception {
             // Given
-            UserRequest request = new UserRequest(
+            UserRequest request = createUserRequest(
                     "New User",
                     "newuser@example.com",
                     "password123",
@@ -67,21 +134,28 @@ class UserIntegrationTest {
             );
 
             // When & Then
-            mockMvc.perform(post("/api/v1/users")
+            String response = mockMvc.perform(post("/api/v1/users")
                             .contentType(MediaType.APPLICATION_JSON)
                             .content(objectMapper.writeValueAsString(request)))
                     .andExpect(status().isCreated())
                     .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                     .andExpect(jsonPath("$.name").value(request.name()))
                     .andExpect(jsonPath("$.email").value(request.email().toLowerCase()))
-                    .andExpect(jsonPath("$.address").value(request.address()));
+                    .andExpect(jsonPath("$.address").value(request.address()))
+                    .andReturn()
+                    .getResponse()
+                    .getContentAsString();
+
+            // Verify persistence
+            String userId = objectMapper.readTree(response).get("id").asText();
+            assertThat(userRepository.findById(UUID.fromString(userId))).isPresent();
         }
 
         @Test
         @DisplayName("Should return 400 when name is blank")
         void shouldReturn400WhenNameIsBlank() throws Exception {
             // Given
-            UserRequest request = new UserRequest(
+            UserRequest request = createUserRequest(
                     "",
                     "newuser@example.com",
                     "password123",
@@ -100,7 +174,7 @@ class UserIntegrationTest {
         @DisplayName("Should return 400 when name is too short")
         void shouldReturn400WhenNameIsTooShort() throws Exception {
             // Given
-            UserRequest request = new UserRequest(
+            UserRequest request = createUserRequest(
                     "ab",
                     "newuser@example.com",
                     "password123",
@@ -119,7 +193,7 @@ class UserIntegrationTest {
         @DisplayName("Should return 400 when email is invalid")
         void shouldReturn400WhenEmailIsInvalid() throws Exception {
             // Given
-            UserRequest request = new UserRequest(
+            UserRequest request = createUserRequest(
                     "New User",
                     "invalid-email",
                     "password123",
@@ -138,7 +212,7 @@ class UserIntegrationTest {
         @DisplayName("Should return 400 when password is blank")
         void shouldReturn400WhenPasswordIsBlank() throws Exception {
             // Given
-            UserRequest request = new UserRequest(
+            UserRequest request = createUserRequest(
                     "New User",
                     "newuser@example.com",
                     "",
@@ -157,7 +231,7 @@ class UserIntegrationTest {
         @DisplayName("Should return 400 when password is too short")
         void shouldReturn400WhenPasswordIsTooShort() throws Exception {
             // Given
-            UserRequest request = new UserRequest(
+            UserRequest request = createUserRequest(
                     "New User",
                     "newuser@example.com",
                     "1234567",
@@ -176,7 +250,7 @@ class UserIntegrationTest {
         @DisplayName("Should return 400 when address is blank")
         void shouldReturn400WhenAddressIsBlank() throws Exception {
             // Given
-            UserRequest request = new UserRequest(
+            UserRequest request = createUserRequest(
                     "New User",
                     "newuser@example.com",
                     "password123",
@@ -195,7 +269,7 @@ class UserIntegrationTest {
         @DisplayName("Should return 400 when userTypeId is null")
         void shouldReturn400WhenUserTypeIdIsNull() throws Exception {
             // Given
-            UserRequest request = new UserRequest(
+            UserRequest request = createUserRequest(
                     "New User",
                     "newuser@example.com",
                     "password123",
@@ -214,7 +288,7 @@ class UserIntegrationTest {
         @DisplayName("Should return 409 when email already exists")
         void shouldReturn409WhenEmailAlreadyExists() throws Exception {
             // Given
-            UserRequest request = new UserRequest(
+            UserRequest request = createUserRequest(
                     "New User",
                     "customer@foodhub.com",
                     "password123",
@@ -234,7 +308,7 @@ class UserIntegrationTest {
         void shouldReturn404WhenUserTypeNotFound() throws Exception {
             // Given
             UUID nonExistentUserTypeId = UUID.randomUUID();
-            UserRequest request = new UserRequest(
+            UserRequest request = createUserRequest(
                     "New User",
                     "newuser@example.com",
                     "password123",
@@ -251,61 +325,15 @@ class UserIntegrationTest {
     }
 
     @Nested
-    @DisplayName("GET /api/v1/users")
-    class FindAllUsersTests {
-
-        @Test
-        @DisplayName("Should return all users with status 200")
-        void shouldReturnAllUsersWithStatus200() throws Exception {
-            // When & Then
-            mockMvc.perform(get("/api/v1/users"))
-                    .andExpect(status().isOk())
-                    .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                    .andExpect(jsonPath("$").isArray());
-        }
-    }
-
-    @Nested
-    @DisplayName("GET /api/v1/users/{id}")
-    class FindUserByIdTests {
-
-        @Test
-        @DisplayName("Should return user by ID with status 200")
-        void shouldReturnUserByIdWithStatus200() throws Exception {
-            // Given
-            UUID customerId = UUID.fromString("cccccccc-cccc-cccc-cccc-cccccccccccc");
-
-            // When & Then
-            mockMvc.perform(get("/api/v1/users/{id}", customerId))
-                    .andExpect(status().isOk())
-                    .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                    .andExpect(jsonPath("$.id").value(customerId.toString()))
-                    .andExpect(jsonPath("$.name").exists())
-                    .andExpect(jsonPath("$.email").exists());
-        }
-
-        @Test
-        @DisplayName("Should return 404 when user not found")
-        void shouldReturn404WhenUserNotFound() throws Exception {
-            // Given
-            UUID nonExistentUserId = UUID.randomUUID();
-
-            // When & Then
-            mockMvc.perform(get("/api/v1/users/{id}", nonExistentUserId))
-                    .andExpect(status().isNotFound());
-        }
-    }
-
-    @Nested
     @DisplayName("PUT /api/v1/users/{id}")
     class UpdateUserTests {
 
         @Test
-        @DisplayName("Should update user with status 200")
-        void shouldUpdateUserWithStatus200() throws Exception {
+        @DisplayName("Should return 200 and update user")
+        void shouldReturn200AndUpdateUser() throws Exception {
             // Given
-            UUID customerId = UUID.fromString("cccccccc-cccc-cccc-cccc-cccccccccccc");
-            UserUpdateRequest request = new UserUpdateRequest(
+            UUID userId = existingCustomerId;
+            UserUpdateRequest request = createUserUpdateRequest(
                     "Updated Name",
                     "updated@example.com",
                     "456 Updated St",
@@ -313,7 +341,7 @@ class UserIntegrationTest {
             );
 
             // When & Then
-            mockMvc.perform(put("/api/v1/users/{id}", customerId)
+            mockMvc.perform(put("/api/v1/users/{id}", userId)
                             .contentType(MediaType.APPLICATION_JSON)
                             .content(objectMapper.writeValueAsString(request)))
                     .andExpect(status().isOk())
@@ -321,14 +349,18 @@ class UserIntegrationTest {
                     .andExpect(jsonPath("$.name").value(request.name()))
                     .andExpect(jsonPath("$.email").value(request.email().toLowerCase()))
                     .andExpect(jsonPath("$.address").value(request.address()));
+
+            // Verify persistence
+            assertThat(userRepository.findById(userId)).isPresent();
+            assertThat(userRepository.findById(userId).get().getName()).isEqualTo(request.name());
         }
 
         @Test
         @DisplayName("Should return 400 when name is blank")
         void shouldReturn400WhenNameIsBlank() throws Exception {
             // Given
-            UUID customerId = UUID.fromString("cccccccc-cccc-cccc-cccc-cccccccccccc");
-            UserUpdateRequest request = new UserUpdateRequest(
+            UUID userId = existingCustomerId;
+            UserUpdateRequest request = createUserUpdateRequest(
                     "",
                     "updated@example.com",
                     "456 Updated St",
@@ -336,7 +368,7 @@ class UserIntegrationTest {
             );
 
             // When & Then
-            mockMvc.perform(put("/api/v1/users/{id}", customerId)
+            mockMvc.perform(put("/api/v1/users/{id}", userId)
                             .contentType(MediaType.APPLICATION_JSON)
                             .content(objectMapper.writeValueAsString(request)))
                     .andExpect(status().isBadRequest());
@@ -346,8 +378,8 @@ class UserIntegrationTest {
         @DisplayName("Should return 400 when email is invalid")
         void shouldReturn400WhenEmailIsInvalid() throws Exception {
             // Given
-            UUID customerId = UUID.fromString("cccccccc-cccc-cccc-cccc-cccccccccccc");
-            UserUpdateRequest request = new UserUpdateRequest(
+            UUID userId = existingCustomerId;
+            UserUpdateRequest request = createUserUpdateRequest(
                     "Updated Name",
                     "invalid-email",
                     "456 Updated St",
@@ -355,7 +387,7 @@ class UserIntegrationTest {
             );
 
             // When & Then
-            mockMvc.perform(put("/api/v1/users/{id}", customerId)
+            mockMvc.perform(put("/api/v1/users/{id}", userId)
                             .contentType(MediaType.APPLICATION_JSON)
                             .content(objectMapper.writeValueAsString(request)))
                     .andExpect(status().isBadRequest());
@@ -365,8 +397,8 @@ class UserIntegrationTest {
         @DisplayName("Should return 400 when address is blank")
         void shouldReturn400WhenAddressIsBlank() throws Exception {
             // Given
-            UUID customerId = UUID.fromString("cccccccc-cccc-cccc-cccc-cccccccccccc");
-            UserUpdateRequest request = new UserUpdateRequest(
+            UUID userId = existingCustomerId;
+            UserUpdateRequest request = createUserUpdateRequest(
                     "Updated Name",
                     "updated@example.com",
                     "",
@@ -374,7 +406,7 @@ class UserIntegrationTest {
             );
 
             // When & Then
-            mockMvc.perform(put("/api/v1/users/{id}", customerId)
+            mockMvc.perform(put("/api/v1/users/{id}", userId)
                             .contentType(MediaType.APPLICATION_JSON)
                             .content(objectMapper.writeValueAsString(request)))
                     .andExpect(status().isBadRequest());
@@ -384,8 +416,8 @@ class UserIntegrationTest {
         @DisplayName("Should return 400 when userTypeId is null")
         void shouldReturn400WhenUserTypeIdIsNull() throws Exception {
             // Given
-            UUID customerId = UUID.fromString("cccccccc-cccc-cccc-cccc-cccccccccccc");
-            UserUpdateRequest request = new UserUpdateRequest(
+            UUID userId = existingCustomerId;
+            UserUpdateRequest request = createUserUpdateRequest(
                     "Updated Name",
                     "updated@example.com",
                     "456 Updated St",
@@ -393,7 +425,7 @@ class UserIntegrationTest {
             );
 
             // When & Then
-            mockMvc.perform(put("/api/v1/users/{id}", customerId)
+            mockMvc.perform(put("/api/v1/users/{id}", userId)
                             .contentType(MediaType.APPLICATION_JSON)
                             .content(objectMapper.writeValueAsString(request)))
                     .andExpect(status().isBadRequest());
@@ -404,7 +436,7 @@ class UserIntegrationTest {
         void shouldReturn404WhenUserNotFound() throws Exception {
             // Given
             UUID nonExistentUserId = UUID.randomUUID();
-            UserUpdateRequest request = new UserUpdateRequest(
+            UserUpdateRequest request = createUserUpdateRequest(
                     "Updated Name",
                     "updated@example.com",
                     "456 Updated St",
@@ -422,8 +454,8 @@ class UserIntegrationTest {
         @DisplayName("Should return 409 when email already exists")
         void shouldReturn409WhenEmailAlreadyExists() throws Exception {
             // Given
-            UUID customerId = UUID.fromString("cccccccc-cccc-cccc-cccc-cccccccccccc");
-            UserUpdateRequest request = new UserUpdateRequest(
+            UUID userId = existingCustomerId;
+            UserUpdateRequest request = createUserUpdateRequest(
                     "Updated Name",
                     "admin@foodhub.com",
                     "456 Updated St",
@@ -431,7 +463,7 @@ class UserIntegrationTest {
             );
 
             // When & Then
-            mockMvc.perform(put("/api/v1/users/{id}", customerId)
+            mockMvc.perform(put("/api/v1/users/{id}", userId)
                             .contentType(MediaType.APPLICATION_JSON)
                             .content(objectMapper.writeValueAsString(request)))
                     .andExpect(status().isConflict());
@@ -441,9 +473,9 @@ class UserIntegrationTest {
         @DisplayName("Should return 404 when user type not found")
         void shouldReturn404WhenUserTypeNotFound() throws Exception {
             // Given
-            UUID customerId = UUID.fromString("cccccccc-cccc-cccc-cccc-cccccccccccc");
+            UUID userId = existingCustomerId;
             UUID nonExistentUserTypeId = UUID.randomUUID();
-            UserUpdateRequest request = new UserUpdateRequest(
+            UserUpdateRequest request = createUserUpdateRequest(
                     "Updated Name",
                     "updated@example.com",
                     "456 Updated St",
@@ -451,7 +483,7 @@ class UserIntegrationTest {
             );
 
             // When & Then
-            mockMvc.perform(put("/api/v1/users/{id}", customerId)
+            mockMvc.perform(put("/api/v1/users/{id}", userId)
                             .contentType(MediaType.APPLICATION_JSON)
                             .content(objectMapper.writeValueAsString(request)))
                     .andExpect(status().isNotFound());
@@ -463,10 +495,10 @@ class UserIntegrationTest {
     class DeleteUserTests {
 
         @Test
-        @DisplayName("Should delete user with status 204")
-        void shouldDeleteUserWithStatus204() throws Exception {
+        @DisplayName("Should return 204 and delete user")
+        void shouldReturn204AndDeleteUser() throws Exception {
             // Given - First create a user
-            UserRequest createRequest = new UserRequest(
+            UserRequest createRequest = createUserRequest(
                     "To Delete",
                     "todelete@example.com",
                     "password123",
@@ -486,6 +518,9 @@ class UserIntegrationTest {
             // When & Then
             mockMvc.perform(delete("/api/v1/users/{id}", userId))
                     .andExpect(status().isNoContent());
+
+            // Verify deletion
+            assertThat(userRepository.findById(UUID.fromString(userId))).isEmpty();
         }
 
         @Test

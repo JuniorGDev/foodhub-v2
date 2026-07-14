@@ -43,7 +43,7 @@ public class KitchenType implements Serializable {
     }
 
     private String normalizedName(String name){
-        return name.trim().toLowerCase();
+        return name.trim().toUpperCase();
     };
 
     public static KitchenType create(String name) {

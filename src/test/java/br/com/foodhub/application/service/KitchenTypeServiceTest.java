@@ -59,7 +59,7 @@ class KitchenTypeServiceTest {
 
             // Then
             assertThat(result).isNotNull();
-            assertThat(result.getName()).isEqualTo(kitchenTypeName.toLowerCase());
+            assertThat(result.getName()).isEqualTo(kitchenTypeName.toUpperCase());
             
             verify(kitchenTypeRepository).existsByName(anyString());
             verify(kitchenTypeRepository).save(any(KitchenType.class));
@@ -74,7 +74,7 @@ class KitchenTypeServiceTest {
             // When & Then
             assertThatThrownBy(() -> kitchenTypeService.save(kitchenTypeName))
                     .isInstanceOf(UserTypeAlreadyExistsException.class)
-                    .hasMessageContaining("User type already exists with name: " + kitchenTypeName.toLowerCase());
+                    .hasMessageContaining("User type already exists with name: " + kitchenTypeName.toUpperCase());
 
             verify(kitchenTypeRepository).existsByName(anyString());
             verify(kitchenTypeRepository, never()).save(any(KitchenType.class));

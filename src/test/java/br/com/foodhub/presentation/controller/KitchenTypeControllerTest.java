@@ -53,7 +53,7 @@ class KitchenTypeControllerTest {
     void setUp() {
         kitchenTypeId = UUID.randomUUID();
         kitchenType = new KitchenType("Italian");
-        kitchenTypeResponse = new KitchenTypeResponse(kitchenTypeId, "italian");
+        kitchenTypeResponse = new KitchenTypeResponse(kitchenTypeId, "ITALIAN");
         kitchenTypeRequest = new KitchenTypeRequest("Italian");
     }
 
