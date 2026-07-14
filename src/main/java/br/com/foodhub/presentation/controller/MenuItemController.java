@@ -73,7 +73,7 @@ public class MenuItemController {
 
             @Parameter(
                     description = "Menu item identifier",
-                    example = "550e8400-e29b-41d4-a716-446655440000"
+                    example = "ffffffff-ffff-ffff-ffff-ffffffffffff"
             )
             @PathVariable UUID id) {
 
@@ -153,7 +153,7 @@ public class MenuItemController {
 
             @Parameter(
                     description = "Menu item identifier",
-                    example = "550e8400-e29b-41d4-a716-446655440000"
+                    example = "ffffffff-ffff-ffff-ffff-ffffffffffff"
             )
             @PathVariable UUID id,
 
@@ -182,6 +182,11 @@ public class MenuItemController {
                     responseCode = "404",
                     description = "Menu item not found",
                     content = @Content
+            ),
+            @ApiResponse(
+                    responseCode = "409",
+                    description = "Resource in use",
+                    content = @Content
             )
     })
     @DeleteMapping("/{id}")
@@ -189,7 +194,7 @@ public class MenuItemController {
 
             @Parameter(
                     description = "Menu item identifier",
-                    example = "550e8400-e29b-41d4-a716-446655440000"
+                    example = "ffffffff-ffff-ffff-ffff-ffffffffffff"
             )
             @PathVariable UUID id) {
 

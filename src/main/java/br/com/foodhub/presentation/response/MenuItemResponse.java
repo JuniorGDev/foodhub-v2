@@ -13,7 +13,7 @@ public record MenuItemResponse(
 
         @Schema(
                 description = "Unique identifier of the menu item.",
-                example = "550e8400-e29b-41d4-a716-446655440000"
+                example = "ffffffff-ffff-ffff-ffff-ffffffffffff"
         )
         UUID id,
 

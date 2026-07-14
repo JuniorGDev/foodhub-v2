@@ -61,7 +61,7 @@ public record UserRequest(
 
         @Schema(
                 description = "Identifier of the user type.",
-                example = "550e8400-e29b-41d4-a716-446655440000"
+                example = "22222222-2222-2222-2222-222222222222"
         )
         @NotNull(message = "User type is required")
         UUID userTypeId

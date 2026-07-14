@@ -1,9 +1,11 @@
 package br.com.foodhub.application.service;
 
+import br.com.foodhub.domain.exception.ResourceInUseException;
 import br.com.foodhub.domain.exception.ResourceNotFoundException;
 import br.com.foodhub.domain.exception.UserTypeAlreadyExistsException;
 import br.com.foodhub.domain.model.UserType;
 import br.com.foodhub.infrastructure.repository.UserTypeRepository;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,7 +43,12 @@ public class UserTypeService {
 
     public void delete(UUID id) {
         UserType userType = findUserType(id);
-        repository.delete(userType);
+        try {
+            repository.delete(userType);
+            repository.flush();
+        } catch (DataIntegrityViolationException ex) {
+            throw new ResourceInUseException("User type");
+        }
     }
 
     private void validateUniqueName(String name, UUID id) {

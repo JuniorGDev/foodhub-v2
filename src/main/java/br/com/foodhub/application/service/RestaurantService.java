@@ -1,6 +1,7 @@
 package br.com.foodhub.application.service;
 
 import br.com.foodhub.application.dto.restaurant.RestaurantDTO;
+import br.com.foodhub.domain.exception.ResourceInUseException;
 import br.com.foodhub.domain.exception.ResourceNotFoundException;
 import br.com.foodhub.domain.model.KitchenType;
 import br.com.foodhub.domain.model.Restaurant;
@@ -8,6 +9,7 @@ import br.com.foodhub.domain.model.User;
 import br.com.foodhub.infrastructure.repository.KitchenTypeRepository;
 import br.com.foodhub.infrastructure.repository.RestaurantRepository;
 import br.com.foodhub.infrastructure.repository.UserRepository;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -73,7 +75,12 @@ public class RestaurantService {
     @Transactional
     public void delete(UUID id) {
         var restaurant = findRestaurant(id);
-        repository.delete(restaurant);
+        try {
+            repository.delete(restaurant);
+            repository.flush();
+        } catch (DataIntegrityViolationException ex) {
+            throw new ResourceInUseException("Restaurant");
+        }
     }
 
     private Restaurant findRestaurant(UUID id) {

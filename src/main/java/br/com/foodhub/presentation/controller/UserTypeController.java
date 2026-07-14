@@ -62,7 +62,7 @@ public class UserTypeController {
 
             @Parameter(
                     description = "User type identifier",
-                    example = "550e8400-e29b-41d4-a716-446655440000"
+                    example = "11111111-1111-1111-1111-111111111111"
             )
             @PathVariable UUID id) {
 
@@ -111,7 +111,7 @@ public class UserTypeController {
 
             @Parameter(
                     description = "User type identifier",
-                    example = "550e8400-e29b-41d4-a716-446655440000"
+                    example = "11111111-1111-1111-1111-111111111111"
             )
             @PathVariable UUID id,
 
@@ -130,14 +130,19 @@ public class UserTypeController {
     )
     @ApiResponses({
             @ApiResponse(responseCode = "204", description = "User type successfully deleted"),
-            @ApiResponse(responseCode = "404", description = "User type not found", content = @Content)
+            @ApiResponse(responseCode = "404", description = "User type not found", content = @Content),
+            @ApiResponse(
+                    responseCode = "409",
+                    description = "Resource in use",
+                    content = @Content
+            )
     })
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(
 
             @Parameter(
                     description = "User type identifier",
-                    example = "550e8400-e29b-41d4-a716-446655440000"
+                    example = "11111111-1111-1111-1111-111111111111"
             )
             @PathVariable UUID id) {
 

@@ -27,7 +27,7 @@ public record RestaurantRequest(
 
         @Schema(
                 description = "Kitchen type identifier.",
-                example = "550e8400-e29b-41d4-a716-446655440000"
+                example = "44444444-4444-4444-4444-444444444444"
         )
         @NotNull(message = "Kitchen type is required")
         UUID kitchenTypeId,
@@ -63,7 +63,7 @@ public record RestaurantRequest(
 
         @Schema(
                 description = "Owner identifier.",
-                example = "550e8400-e29b-41d4-a716-446655440000"
+                example = "bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb"
         )
         @NotNull(message = "Owner is required")
         UUID ownerId

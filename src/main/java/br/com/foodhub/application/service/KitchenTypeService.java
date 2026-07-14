@@ -1,9 +1,11 @@
 package br.com.foodhub.application.service;
 
+import br.com.foodhub.domain.exception.ResourceInUseException;
 import br.com.foodhub.domain.exception.ResourceNotFoundException;
 import br.com.foodhub.domain.exception.UserTypeAlreadyExistsException;
 import br.com.foodhub.domain.model.KitchenType;
 import br.com.foodhub.infrastructure.repository.KitchenTypeRepository;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,7 +43,12 @@ public class KitchenTypeService {
 
     public void delete(UUID id) {
         var kitchenType = findKitchenType(id);
-        repository.delete(kitchenType);
+        try {
+            repository.delete(kitchenType);
+            repository.flush();
+        } catch (DataIntegrityViolationException ex) {
+            throw new ResourceInUseException("Kitchen type");
+        }
     }
 
     private void validateUniqueName(String name, UUID id) {

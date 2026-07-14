@@ -3,6 +3,7 @@ package br.com.foodhub.infrastructure.config;
 import br.com.foodhub.domain.exception.InvalidBusinessHoursException;
 import br.com.foodhub.domain.exception.InvalidMenuItemPriceException;
 import br.com.foodhub.domain.exception.InvalidRestaurantOwnerException;
+import br.com.foodhub.domain.exception.ResourceInUseException;
 import br.com.foodhub.domain.exception.ResourceNotFoundException;
 import br.com.foodhub.domain.exception.UserAlreadyExistsException;
 import br.com.foodhub.domain.exception.UserTypeAlreadyExistsException;
@@ -13,6 +14,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -122,6 +124,24 @@ public class GlobalExceptionHandler {
                 HttpStatus.UNPROCESSABLE_ENTITY,
                 "Invalid restaurant owner",
                 e.getMessage()
+        );
+    }
+
+    @ExceptionHandler(ResourceInUseException.class)
+    public ResponseEntity<ProblemDetail> handleResourceInUse(ResourceInUseException ex) {
+        return buildResponse(
+                HttpStatus.CONFLICT,
+                "Resource in use",
+                ex.getMessage()
+        );
+    }
+
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public ResponseEntity<ProblemDetail> handleMethodArgumentTypeMismatch(MethodArgumentTypeMismatchException ex) {
+        return buildResponse(
+                HttpStatus.BAD_REQUEST,
+                "Invalid request",
+                "Invalid request fields"
         );
     }
 }
