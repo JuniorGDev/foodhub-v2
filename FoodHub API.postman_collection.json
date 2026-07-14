@@ -1,11 +1,11 @@
 {
 	"info": {
-		"_postman_id": "d0a76a7f-9413-49db-9b8b-82d9282f56cb",
+		"_postman_id": "13be73b6-3938-4fd0-9dfa-2e3a7e77787a",
 		"name": "FoodHub API",
 		"description": "REST API for restaurant, menu and user management.",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "53389595",
-		"_collection_link": "https://juniorgeo70-8017150.postman.co/workspace/Geov%C3%A1-Junior's-Workspace~cd97d3aa-cec7-444e-8d34-6b7a30cc5660/collection/53389595-d0a76a7f-9413-49db-9b8b-82d9282f56cb?action=share&source=collection_link&creator=53389595"
+		"_collection_link": "https://juniorgeo70-8017150.postman.co/workspace/Geov%C3%A1-Junior's-Workspace~cd97d3aa-cec7-444e-8d34-6b7a30cc5660/collection/53389595-13be73b6-3938-4fd0-9dfa-2e3a7e77787a?action=share&source=collection_link&creator=53389595"
 	},
 	"item": [
 		{
@@ -44,7 +44,7 @@
 													"variable": [
 														{
 															"key": "id",
-															"value": "550e8400-e29b-41d4-a716-446655440000",
+															"value": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
 															"description": "User identifier"
 														}
 													]
@@ -90,7 +90,7 @@
 														}
 													],
 													"cookie": [],
-													"body": "{\n  \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"Geová Junior\",\n  \"email\": \"junior@foodhub.com\",\n  \"address\": \"123 Main Street, São Paulo - SP\",\n  \"userType\": {\n    \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n    \"name\": \"OWNER\"\n  }\n}"
+													"body": "{\n  \"id\": \"bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb\",\n  \"name\": \"Geová Junior\",\n  \"email\": \"owner@foodhub.com\",\n  \"address\": \"123 Main Street, São Paulo - SP\",\n  \"userType\": {\n    \"id\": \"22222222-2222-2222-2222-222222222222\",\n    \"name\": \"OWNER\"\n  }\n}"
 												},
 												{
 													"name": "User not found",
@@ -140,7 +140,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\n  \"address\": \"123 Main Street, São Paulo - SP\",\n  \"email\": \"junior@foodhub.com\",\n  \"name\": \"Geová Junior\",\n  \"userTypeId\": \"550e8400-e29b-41d4-a716-446655440000\"\n}",
+													"raw": "{\n  \"address\": \"123 Main Street, São Paulo - SP\",\n  \"email\": \"junior@foodhub.com\",\n  \"name\": \"Geová Junior\",\n  \"userTypeId\": \"22222222-2222-2222-2222-222222222222\"\n}",
 													"options": {
 														"raw": {
 															"headerFamily": "json",
@@ -162,7 +162,7 @@
 													"variable": [
 														{
 															"key": "id",
-															"value": "550e8400-e29b-41d4-a716-446655440000",
+															"value": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
 															"description": "User identifier"
 														}
 													]
@@ -186,7 +186,7 @@
 														],
 														"body": {
 															"mode": "raw",
-															"raw": "{\n  \"address\": \"123 Main Street, São Paulo - SP\",\n  \"email\": \"junior@foodhub.com\",\n  \"name\": \"Geová Junior\",\n  \"userTypeId\": \"550e8400-e29b-41d4-a716-446655440000\"\n}",
+															"raw": "{\n  \"address\": \"123 Main Street, São Paulo - SP\",\n  \"email\": \"junior@foodhub.com\",\n  \"name\": \"Geová Junior\",\n  \"userTypeId\": \"22222222-2222-2222-2222-222222222222\"\n}",
 															"options": {
 																"raw": {
 																	"headerFamily": "json",
@@ -222,7 +222,7 @@
 														}
 													],
 													"cookie": [],
-													"body": "{\n  \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"Geová Junior\",\n  \"email\": \"junior@foodhub.com\",\n  \"address\": \"123 Main Street, São Paulo - SP\",\n  \"userType\": {\n    \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n    \"name\": \"OWNER\"\n  }\n}"
+													"body": "{\n  \"id\": \"bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb\",\n  \"name\": \"Geová Junior\",\n  \"email\": \"owner@foodhub.com\",\n  \"address\": \"123 Main Street, São Paulo - SP\",\n  \"userType\": {\n    \"id\": \"22222222-2222-2222-2222-222222222222\",\n    \"name\": \"OWNER\"\n  }\n}"
 												},
 												{
 													"name": "Invalid request",
@@ -236,7 +236,7 @@
 														],
 														"body": {
 															"mode": "raw",
-															"raw": "{\n  \"address\": \"123 Main Street, São Paulo - SP\",\n  \"email\": \"junior@foodhub.com\",\n  \"name\": \"Geová Junior\",\n  \"userTypeId\": \"550e8400-e29b-41d4-a716-446655440000\"\n}",
+															"raw": "{\n  \"address\": \"123 Main Street, São Paulo - SP\",\n  \"email\": \"junior@foodhub.com\",\n  \"name\": \"Geová Junior\",\n  \"userTypeId\": \"22222222-2222-2222-2222-222222222222\"\n}",
 															"options": {
 																"raw": {
 																	"headerFamily": "json",
@@ -281,7 +281,7 @@
 														],
 														"body": {
 															"mode": "raw",
-															"raw": "{\n  \"address\": \"123 Main Street, São Paulo - SP\",\n  \"email\": \"junior@foodhub.com\",\n  \"name\": \"Geová Junior\",\n  \"userTypeId\": \"550e8400-e29b-41d4-a716-446655440000\"\n}",
+															"raw": "{\n  \"address\": \"123 Main Street, São Paulo - SP\",\n  \"email\": \"junior@foodhub.com\",\n  \"name\": \"Geová Junior\",\n  \"userTypeId\": \"22222222-2222-2222-2222-222222222222\"\n}",
 															"options": {
 																"raw": {
 																	"headerFamily": "json",
@@ -326,7 +326,7 @@
 														],
 														"body": {
 															"mode": "raw",
-															"raw": "{\n  \"address\": \"123 Main Street, São Paulo - SP\",\n  \"email\": \"junior@foodhub.com\",\n  \"name\": \"Geová Junior\",\n  \"userTypeId\": \"550e8400-e29b-41d4-a716-446655440000\"\n}",
+															"raw": "{\n  \"address\": \"123 Main Street, São Paulo - SP\",\n  \"email\": \"junior@foodhub.com\",\n  \"name\": \"Geová Junior\",\n  \"userTypeId\": \"22222222-2222-2222-2222-222222222222\"\n}",
 															"options": {
 																"raw": {
 																	"headerFamily": "json",
@@ -380,7 +380,7 @@
 													"variable": [
 														{
 															"key": "id",
-															"value": "550e8400-e29b-41d4-a716-446655440000",
+															"value": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
 															"description": "User identifier"
 														}
 													]
@@ -447,6 +447,36 @@
 													"header": [],
 													"cookie": [],
 													"body": ""
+												},
+												{
+													"name": "Resource in use",
+													"originalRequest": {
+														"method": "DELETE",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/users/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"users",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "Conflict",
+													"code": 409,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
 												}
 											]
 										}
@@ -462,7 +492,17 @@
 												"value": "*/*"
 											}
 										],
-										"url": "{{baseUrl}}/api/v1/users",
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/users",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"users"
+											]
+										},
 										"description": "Returns all registered users."
 									},
 									"response": [
@@ -476,7 +516,17 @@
 														"value": "*/*"
 													}
 												],
-												"url": "{{baseUrl}}/api/v1/users"
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/users",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"users"
+													]
+												}
 											},
 											"status": "OK",
 											"code": 200,
@@ -488,7 +538,7 @@
 												}
 											],
 											"cookie": [],
-											"body": "[\n  {\n    \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n    \"name\": \"Geová Junior\",\n    \"email\": \"junior@foodhub.com\",\n    \"address\": \"123 Main Street, São Paulo - SP\",\n    \"userType\": {\n      \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n      \"name\": \"OWNER\"\n    }\n  },\n  {\n    \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n    \"name\": \"Geová Junior\",\n    \"email\": \"junior@foodhub.com\",\n    \"address\": \"123 Main Street, São Paulo - SP\",\n    \"userType\": {\n      \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n      \"name\": \"OWNER\"\n    }\n  }\n]"
+											"body": "[\n  {\n    \"id\": \"bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb\",\n    \"name\": \"Geová Junior\",\n    \"email\": \"owner@foodhub.com\",\n    \"address\": \"123 Main Street, São Paulo - SP\",\n    \"userType\": {\n      \"id\": \"22222222-2222-2222-2222-222222222222\",\n      \"name\": \"OWNER\"\n    }\n  },\n  {\n    \"id\": \"bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb\",\n    \"name\": \"Geová Junior\",\n    \"email\": \"owner@foodhub.com\",\n    \"address\": \"123 Main Street, São Paulo - SP\",\n    \"userType\": {\n      \"id\": \"22222222-2222-2222-2222-222222222222\",\n      \"name\": \"OWNER\"\n    }\n  }\n]"
 										}
 									]
 								},
@@ -508,7 +558,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n  \"address\": \"123 Main Street, São Paulo - SP\",\n  \"email\": \"junior@foodhub.com\",\n  \"name\": \"Geová Junior\",\n  \"password\": \"StrongPassword123\",\n  \"userTypeId\": \"550e8400-e29b-41d4-a716-446655440000\"\n}",
+											"raw": "{\n  \"address\": \"123 Main Street, São Paulo - SP\",\n  \"email\": \"junior@foodhub.com\",\n  \"name\": \"Geová Junior\",\n  \"password\": \"StrongPassword123\",\n  \"userTypeId\": \"22222222-2222-2222-2222-222222222222\"\n}",
 											"options": {
 												"raw": {
 													"headerFamily": "json",
@@ -516,7 +566,17 @@
 												}
 											}
 										},
-										"url": "{{baseUrl}}/api/v1/users",
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/users",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"users"
+											]
+										},
 										"description": "Creates a new user in the system."
 									},
 									"response": [
@@ -536,7 +596,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\n  \"address\": \"123 Main Street, São Paulo - SP\",\n  \"email\": \"junior@foodhub.com\",\n  \"name\": \"Geová Junior\",\n  \"password\": \"StrongPassword123\",\n  \"userTypeId\": \"550e8400-e29b-41d4-a716-446655440000\"\n}",
+													"raw": "{\n  \"address\": \"123 Main Street, São Paulo - SP\",\n  \"email\": \"junior@foodhub.com\",\n  \"name\": \"Geová Junior\",\n  \"password\": \"StrongPassword123\",\n  \"userTypeId\": \"22222222-2222-2222-2222-222222222222\"\n}",
 													"options": {
 														"raw": {
 															"headerFamily": "json",
@@ -544,7 +604,17 @@
 														}
 													}
 												},
-												"url": "{{baseUrl}}/api/v1/users"
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/users",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"users"
+													]
+												}
 											},
 											"status": "Created",
 											"code": 201,
@@ -556,7 +626,7 @@
 												}
 											],
 											"cookie": [],
-											"body": "{\n  \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"Geová Junior\",\n  \"email\": \"junior@foodhub.com\",\n  \"address\": \"123 Main Street, São Paulo - SP\",\n  \"userType\": {\n    \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n    \"name\": \"OWNER\"\n  }\n}"
+											"body": "{\n  \"id\": \"bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb\",\n  \"name\": \"Geová Junior\",\n  \"email\": \"owner@foodhub.com\",\n  \"address\": \"123 Main Street, São Paulo - SP\",\n  \"userType\": {\n    \"id\": \"22222222-2222-2222-2222-222222222222\",\n    \"name\": \"OWNER\"\n  }\n}"
 										},
 										{
 											"name": "Invalid request",
@@ -570,7 +640,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\n  \"address\": \"123 Main Street, São Paulo - SP\",\n  \"email\": \"junior@foodhub.com\",\n  \"name\": \"Geová Junior\",\n  \"password\": \"StrongPassword123\",\n  \"userTypeId\": \"550e8400-e29b-41d4-a716-446655440000\"\n}",
+													"raw": "{\n  \"address\": \"123 Main Street, São Paulo - SP\",\n  \"email\": \"junior@foodhub.com\",\n  \"name\": \"Geová Junior\",\n  \"password\": \"StrongPassword123\",\n  \"userTypeId\": \"22222222-2222-2222-2222-222222222222\"\n}",
 													"options": {
 														"raw": {
 															"headerFamily": "json",
@@ -578,7 +648,17 @@
 														}
 													}
 												},
-												"url": "{{baseUrl}}/api/v1/users"
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/users",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"users"
+													]
+												}
 											},
 											"status": "Bad Request",
 											"code": 400,
@@ -599,7 +679,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\n  \"address\": \"123 Main Street, São Paulo - SP\",\n  \"email\": \"junior@foodhub.com\",\n  \"name\": \"Geová Junior\",\n  \"password\": \"StrongPassword123\",\n  \"userTypeId\": \"550e8400-e29b-41d4-a716-446655440000\"\n}",
+													"raw": "{\n  \"address\": \"123 Main Street, São Paulo - SP\",\n  \"email\": \"junior@foodhub.com\",\n  \"name\": \"Geová Junior\",\n  \"password\": \"StrongPassword123\",\n  \"userTypeId\": \"22222222-2222-2222-2222-222222222222\"\n}",
 													"options": {
 														"raw": {
 															"headerFamily": "json",
@@ -607,7 +687,17 @@
 														}
 													}
 												},
-												"url": "{{baseUrl}}/api/v1/users"
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/users",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"users"
+													]
+												}
 											},
 											"status": "Not Found",
 											"code": 404,
@@ -628,7 +718,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\n  \"address\": \"123 Main Street, São Paulo - SP\",\n  \"email\": \"junior@foodhub.com\",\n  \"name\": \"Geová Junior\",\n  \"password\": \"StrongPassword123\",\n  \"userTypeId\": \"550e8400-e29b-41d4-a716-446655440000\"\n}",
+													"raw": "{\n  \"address\": \"123 Main Street, São Paulo - SP\",\n  \"email\": \"junior@foodhub.com\",\n  \"name\": \"Geová Junior\",\n  \"password\": \"StrongPassword123\",\n  \"userTypeId\": \"22222222-2222-2222-2222-222222222222\"\n}",
 													"options": {
 														"raw": {
 															"headerFamily": "json",
@@ -636,7 +726,17 @@
 														}
 													}
 												},
-												"url": "{{baseUrl}}/api/v1/users"
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/users",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"users"
+													]
+												}
 											},
 											"status": "Conflict",
 											"code": 409,
@@ -679,7 +779,7 @@
 													"variable": [
 														{
 															"key": "id",
-															"value": "550e8400-e29b-41d4-a716-446655440000",
+															"value": "11111111-1111-1111-1111-111111111111",
 															"description": "User type identifier"
 														}
 													]
@@ -725,7 +825,7 @@
 														}
 													],
 													"cookie": [],
-													"body": "{\n  \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"OWNER\"\n}"
+													"body": "{\n  \"id\": \"22222222-2222-2222-2222-222222222222\",\n  \"name\": \"OWNER\"\n}"
 												},
 												{
 													"name": "User type not found",
@@ -797,7 +897,7 @@
 													"variable": [
 														{
 															"key": "id",
-															"value": "550e8400-e29b-41d4-a716-446655440000",
+															"value": "11111111-1111-1111-1111-111111111111",
 															"description": "User type identifier"
 														}
 													]
@@ -857,7 +957,7 @@
 														}
 													],
 													"cookie": [],
-													"body": "{\n  \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"OWNER\"\n}"
+													"body": "{\n  \"id\": \"22222222-2222-2222-2222-222222222222\",\n  \"name\": \"OWNER\"\n}"
 												},
 												{
 													"name": "Invalid request",
@@ -1015,7 +1115,7 @@
 													"variable": [
 														{
 															"key": "id",
-															"value": "550e8400-e29b-41d4-a716-446655440000",
+															"value": "11111111-1111-1111-1111-111111111111",
 															"description": "User type identifier"
 														}
 													]
@@ -1082,6 +1182,36 @@
 													"header": [],
 													"cookie": [],
 													"body": ""
+												},
+												{
+													"name": "Resource in use",
+													"originalRequest": {
+														"method": "DELETE",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/user-types/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"user-types",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "Conflict",
+													"code": 409,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
 												}
 											]
 										}
@@ -1097,7 +1227,17 @@
 												"value": "*/*"
 											}
 										],
-										"url": "{{baseUrl}}/api/v1/user-types",
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/user-types",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"user-types"
+											]
+										},
 										"description": "Returns all registered user types."
 									},
 									"response": [
@@ -1111,7 +1251,17 @@
 														"value": "*/*"
 													}
 												],
-												"url": "{{baseUrl}}/api/v1/user-types"
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/user-types",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"user-types"
+													]
+												}
 											},
 											"status": "OK",
 											"code": 200,
@@ -1123,7 +1273,7 @@
 												}
 											],
 											"cookie": [],
-											"body": "[\n  {\n    \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n    \"name\": \"OWNER\"\n  },\n  {\n    \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n    \"name\": \"OWNER\"\n  }\n]"
+											"body": "[\n  {\n    \"id\": \"22222222-2222-2222-2222-222222222222\",\n    \"name\": \"OWNER\"\n  },\n  {\n    \"id\": \"22222222-2222-2222-2222-222222222222\",\n    \"name\": \"OWNER\"\n  }\n]"
 										}
 									]
 								},
@@ -1151,7 +1301,17 @@
 												}
 											}
 										},
-										"url": "{{baseUrl}}/api/v1/user-types",
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/user-types",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"user-types"
+											]
+										},
 										"description": "Creates a new user type."
 									},
 									"response": [
@@ -1179,7 +1339,17 @@
 														}
 													}
 												},
-												"url": "{{baseUrl}}/api/v1/user-types"
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/user-types",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"user-types"
+													]
+												}
 											},
 											"status": "Created",
 											"code": 201,
@@ -1191,7 +1361,7 @@
 												}
 											],
 											"cookie": [],
-											"body": "{\n  \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"OWNER\"\n}"
+											"body": "{\n  \"id\": \"22222222-2222-2222-2222-222222222222\",\n  \"name\": \"OWNER\"\n}"
 										},
 										{
 											"name": "Invalid request",
@@ -1213,7 +1383,17 @@
 														}
 													}
 												},
-												"url": "{{baseUrl}}/api/v1/user-types"
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/user-types",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"user-types"
+													]
+												}
 											},
 											"status": "Bad Request",
 											"code": 400,
@@ -1242,7 +1422,17 @@
 														}
 													}
 												},
-												"url": "{{baseUrl}}/api/v1/user-types"
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/user-types",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"user-types"
+													]
+												}
 											},
 											"status": "Conflict",
 											"code": 409,
@@ -1285,7 +1475,7 @@
 													"variable": [
 														{
 															"key": "id",
-															"value": "550e8400-e29b-41d4-a716-446655440000",
+															"value": "dddddddd-dddd-dddd-dddd-dddddddddddd",
 															"description": "Restaurant identifier"
 														}
 													]
@@ -1331,7 +1521,7 @@
 														}
 													],
 													"cookie": [],
-													"body": "{\n  \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"Pizzaria Napoli\",\n  \"address\": \"Av. Paulista, 1000 - São Paulo/SP\",\n  \"kitchenType\": \"ITALIAN\",\n  \"openingTime\": \"08:00\",\n  \"closingTime\": \"22:00\",\n  \"ownerName\": \"Geová Junior\",\n  \"menuItems\": [\n    {\n      \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n      \"name\": \"Cheeseburger\",\n      \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n      \"price\": 4468.847035892858,\n      \"availableOnlyInRestaurant\": true,\n      \"imagePath\": \"/images/menu-items/cheeseburger.png\"\n    },\n    {\n      \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n      \"name\": \"Cheeseburger\",\n      \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n      \"price\": 3081.092125210665,\n      \"availableOnlyInRestaurant\": true,\n      \"imagePath\": \"/images/menu-items/cheeseburger.png\"\n    }\n  ]\n}"
+													"body": "{\n  \"id\": \"dddddddd-dddd-dddd-dddd-dddddddddddd\",\n  \"name\": \"Pizzaria Napoli\",\n  \"address\": \"Av. Paulista, 1000 - São Paulo/SP\",\n  \"kitchenType\": \"ITALIAN\",\n  \"openingTime\": \"08:00\",\n  \"closingTime\": \"22:00\",\n  \"ownerName\": \"Geová Junior\",\n  \"menuItems\": [\n    {\n      \"id\": \"ffffffff-ffff-ffff-ffff-ffffffffffff\",\n      \"name\": \"Cheeseburger\",\n      \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n      \"price\": 738.4105480310988,\n      \"availableOnlyInRestaurant\": true,\n      \"imagePath\": \"/images/menu-items/cheeseburger.png\"\n    },\n    {\n      \"id\": \"ffffffff-ffff-ffff-ffff-ffffffffffff\",\n      \"name\": \"Cheeseburger\",\n      \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n      \"price\": 2207.988628539681,\n      \"availableOnlyInRestaurant\": true,\n      \"imagePath\": \"/images/menu-items/cheeseburger.png\"\n    }\n  ]\n}"
 												},
 												{
 													"name": "Restaurant not found",
@@ -1381,7 +1571,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\n  \"address\": \"Av. Paulista, 1000 - São Paulo/SP\",\n  \"closingTime\": \"23:01:03.346Z\",\n  \"kitchenTypeId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"Pizzaria Napoli\",\n  \"openingTime\": \"01:35:21.392Z\",\n  \"ownerId\": \"550e8400-e29b-41d4-a716-446655440000\"\n}",
+													"raw": "{\n  \"address\": \"Av. Paulista, 1000 - São Paulo/SP\",\n  \"closingTime\": \"11:00:45.388Z\",\n  \"kitchenTypeId\": \"44444444-4444-4444-4444-444444444444\",\n  \"name\": \"Pizzaria Napoli\",\n  \"openingTime\": \"12:25:46.747Z\",\n  \"ownerId\": \"bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb\"\n}",
 													"options": {
 														"raw": {
 															"headerFamily": "json",
@@ -1403,7 +1593,7 @@
 													"variable": [
 														{
 															"key": "id",
-															"value": "550e8400-e29b-41d4-a716-446655440000",
+															"value": "dddddddd-dddd-dddd-dddd-dddddddddddd",
 															"description": "Restaurant identifier"
 														}
 													]
@@ -1427,7 +1617,7 @@
 														],
 														"body": {
 															"mode": "raw",
-															"raw": "{\n  \"address\": \"Av. Paulista, 1000 - São Paulo/SP\",\n  \"closingTime\": \"23:01:03.346Z\",\n  \"kitchenTypeId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"Pizzaria Napoli\",\n  \"openingTime\": \"01:35:21.392Z\",\n  \"ownerId\": \"550e8400-e29b-41d4-a716-446655440000\"\n}",
+															"raw": "{\n  \"address\": \"Av. Paulista, 1000 - São Paulo/SP\",\n  \"closingTime\": \"11:00:45.388Z\",\n  \"kitchenTypeId\": \"44444444-4444-4444-4444-444444444444\",\n  \"name\": \"Pizzaria Napoli\",\n  \"openingTime\": \"12:25:46.747Z\",\n  \"ownerId\": \"bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb\"\n}",
 															"options": {
 																"raw": {
 																	"headerFamily": "json",
@@ -1463,7 +1653,7 @@
 														}
 													],
 													"cookie": [],
-													"body": "{\n  \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"Pizzaria Napoli\",\n  \"address\": \"Av. Paulista, 1000 - São Paulo/SP\",\n  \"kitchenType\": \"ITALIAN\",\n  \"openingTime\": \"08:00\",\n  \"closingTime\": \"22:00\",\n  \"ownerName\": \"Geová Junior\",\n  \"menuItems\": [\n    {\n      \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n      \"name\": \"Cheeseburger\",\n      \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n      \"price\": 4468.847035892858,\n      \"availableOnlyInRestaurant\": true,\n      \"imagePath\": \"/images/menu-items/cheeseburger.png\"\n    },\n    {\n      \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n      \"name\": \"Cheeseburger\",\n      \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n      \"price\": 3081.092125210665,\n      \"availableOnlyInRestaurant\": true,\n      \"imagePath\": \"/images/menu-items/cheeseburger.png\"\n    }\n  ]\n}"
+													"body": "{\n  \"id\": \"dddddddd-dddd-dddd-dddd-dddddddddddd\",\n  \"name\": \"Pizzaria Napoli\",\n  \"address\": \"Av. Paulista, 1000 - São Paulo/SP\",\n  \"kitchenType\": \"ITALIAN\",\n  \"openingTime\": \"08:00\",\n  \"closingTime\": \"22:00\",\n  \"ownerName\": \"Geová Junior\",\n  \"menuItems\": [\n    {\n      \"id\": \"ffffffff-ffff-ffff-ffff-ffffffffffff\",\n      \"name\": \"Cheeseburger\",\n      \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n      \"price\": 738.4105480310988,\n      \"availableOnlyInRestaurant\": true,\n      \"imagePath\": \"/images/menu-items/cheeseburger.png\"\n    },\n    {\n      \"id\": \"ffffffff-ffff-ffff-ffff-ffffffffffff\",\n      \"name\": \"Cheeseburger\",\n      \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n      \"price\": 2207.988628539681,\n      \"availableOnlyInRestaurant\": true,\n      \"imagePath\": \"/images/menu-items/cheeseburger.png\"\n    }\n  ]\n}"
 												},
 												{
 													"name": "Invalid request",
@@ -1477,7 +1667,7 @@
 														],
 														"body": {
 															"mode": "raw",
-															"raw": "{\n  \"address\": \"Av. Paulista, 1000 - São Paulo/SP\",\n  \"closingTime\": \"23:01:03.346Z\",\n  \"kitchenTypeId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"Pizzaria Napoli\",\n  \"openingTime\": \"01:35:21.392Z\",\n  \"ownerId\": \"550e8400-e29b-41d4-a716-446655440000\"\n}",
+															"raw": "{\n  \"address\": \"Av. Paulista, 1000 - São Paulo/SP\",\n  \"closingTime\": \"11:00:45.388Z\",\n  \"kitchenTypeId\": \"44444444-4444-4444-4444-444444444444\",\n  \"name\": \"Pizzaria Napoli\",\n  \"openingTime\": \"12:25:46.747Z\",\n  \"ownerId\": \"bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb\"\n}",
 															"options": {
 																"raw": {
 																	"headerFamily": "json",
@@ -1522,7 +1712,7 @@
 														],
 														"body": {
 															"mode": "raw",
-															"raw": "{\n  \"address\": \"Av. Paulista, 1000 - São Paulo/SP\",\n  \"closingTime\": \"23:01:03.346Z\",\n  \"kitchenTypeId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"Pizzaria Napoli\",\n  \"openingTime\": \"01:35:21.392Z\",\n  \"ownerId\": \"550e8400-e29b-41d4-a716-446655440000\"\n}",
+															"raw": "{\n  \"address\": \"Av. Paulista, 1000 - São Paulo/SP\",\n  \"closingTime\": \"11:00:45.388Z\",\n  \"kitchenTypeId\": \"44444444-4444-4444-4444-444444444444\",\n  \"name\": \"Pizzaria Napoli\",\n  \"openingTime\": \"12:25:46.747Z\",\n  \"ownerId\": \"bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb\"\n}",
 															"options": {
 																"raw": {
 																	"headerFamily": "json",
@@ -1567,7 +1757,7 @@
 														],
 														"body": {
 															"mode": "raw",
-															"raw": "{\n  \"address\": \"Av. Paulista, 1000 - São Paulo/SP\",\n  \"closingTime\": \"23:01:03.346Z\",\n  \"kitchenTypeId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"Pizzaria Napoli\",\n  \"openingTime\": \"01:35:21.392Z\",\n  \"ownerId\": \"550e8400-e29b-41d4-a716-446655440000\"\n}",
+															"raw": "{\n  \"address\": \"Av. Paulista, 1000 - São Paulo/SP\",\n  \"closingTime\": \"11:00:45.388Z\",\n  \"kitchenTypeId\": \"44444444-4444-4444-4444-444444444444\",\n  \"name\": \"Pizzaria Napoli\",\n  \"openingTime\": \"12:25:46.747Z\",\n  \"ownerId\": \"bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb\"\n}",
 															"options": {
 																"raw": {
 																	"headerFamily": "json",
@@ -1621,7 +1811,7 @@
 													"variable": [
 														{
 															"key": "id",
-															"value": "550e8400-e29b-41d4-a716-446655440000",
+															"value": "dddddddd-dddd-dddd-dddd-dddddddddddd",
 															"description": "Restaurant identifier"
 														}
 													]
@@ -1688,6 +1878,36 @@
 													"header": [],
 													"cookie": [],
 													"body": ""
+												},
+												{
+													"name": "Resource in use",
+													"originalRequest": {
+														"method": "DELETE",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/restaurants/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"restaurants",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "Conflict",
+													"code": 409,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
 												}
 											]
 										}
@@ -1703,7 +1923,17 @@
 												"value": "*/*"
 											}
 										],
-										"url": "{{baseUrl}}/api/v1/restaurants",
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/restaurants",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"restaurants"
+											]
+										},
 										"description": "Returns all registered restaurants."
 									},
 									"response": [
@@ -1717,7 +1947,17 @@
 														"value": "*/*"
 													}
 												],
-												"url": "{{baseUrl}}/api/v1/restaurants"
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/restaurants",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"restaurants"
+													]
+												}
 											},
 											"status": "OK",
 											"code": 200,
@@ -1729,7 +1969,7 @@
 												}
 											],
 											"cookie": [],
-											"body": "[\n  {\n    \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n    \"name\": \"Pizzaria Napoli\",\n    \"address\": \"Av. Paulista, 1000 - São Paulo/SP\",\n    \"kitchenType\": \"ITALIAN\",\n    \"openingTime\": \"08:00\",\n    \"closingTime\": \"22:00\",\n    \"ownerName\": \"Geová Junior\",\n    \"menuItems\": [\n      {\n        \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n        \"name\": \"Cheeseburger\",\n        \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n        \"price\": 9629.447771947553,\n        \"availableOnlyInRestaurant\": true,\n        \"imagePath\": \"/images/menu-items/cheeseburger.png\"\n      },\n      {\n        \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n        \"name\": \"Cheeseburger\",\n        \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n        \"price\": 3966.458635544956,\n        \"availableOnlyInRestaurant\": true,\n        \"imagePath\": \"/images/menu-items/cheeseburger.png\"\n      }\n    ]\n  },\n  {\n    \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n    \"name\": \"Pizzaria Napoli\",\n    \"address\": \"Av. Paulista, 1000 - São Paulo/SP\",\n    \"kitchenType\": \"ITALIAN\",\n    \"openingTime\": \"08:00\",\n    \"closingTime\": \"22:00\",\n    \"ownerName\": \"Geová Junior\",\n    \"menuItems\": [\n      {\n        \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n        \"name\": \"Cheeseburger\",\n        \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n        \"price\": 5110.087665920398,\n        \"availableOnlyInRestaurant\": true,\n        \"imagePath\": \"/images/menu-items/cheeseburger.png\"\n      },\n      {\n        \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n        \"name\": \"Cheeseburger\",\n        \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n        \"price\": 6557.738291296271,\n        \"availableOnlyInRestaurant\": true,\n        \"imagePath\": \"/images/menu-items/cheeseburger.png\"\n      }\n    ]\n  }\n]"
+											"body": "[\n  {\n    \"id\": \"dddddddd-dddd-dddd-dddd-dddddddddddd\",\n    \"name\": \"Pizzaria Napoli\",\n    \"address\": \"Av. Paulista, 1000 - São Paulo/SP\",\n    \"kitchenType\": \"ITALIAN\",\n    \"openingTime\": \"08:00\",\n    \"closingTime\": \"22:00\",\n    \"ownerName\": \"Geová Junior\",\n    \"menuItems\": [\n      {\n        \"id\": \"ffffffff-ffff-ffff-ffff-ffffffffffff\",\n        \"name\": \"Cheeseburger\",\n        \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n        \"price\": 2880.969227465846,\n        \"availableOnlyInRestaurant\": true,\n        \"imagePath\": \"/images/menu-items/cheeseburger.png\"\n      },\n      {\n        \"id\": \"ffffffff-ffff-ffff-ffff-ffffffffffff\",\n        \"name\": \"Cheeseburger\",\n        \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n        \"price\": 927.0529737481015,\n        \"availableOnlyInRestaurant\": true,\n        \"imagePath\": \"/images/menu-items/cheeseburger.png\"\n      }\n    ]\n  },\n  {\n    \"id\": \"dddddddd-dddd-dddd-dddd-dddddddddddd\",\n    \"name\": \"Pizzaria Napoli\",\n    \"address\": \"Av. Paulista, 1000 - São Paulo/SP\",\n    \"kitchenType\": \"ITALIAN\",\n    \"openingTime\": \"08:00\",\n    \"closingTime\": \"22:00\",\n    \"ownerName\": \"Geová Junior\",\n    \"menuItems\": [\n      {\n        \"id\": \"ffffffff-ffff-ffff-ffff-ffffffffffff\",\n        \"name\": \"Cheeseburger\",\n        \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n        \"price\": 2336.6298491783646,\n        \"availableOnlyInRestaurant\": true,\n        \"imagePath\": \"/images/menu-items/cheeseburger.png\"\n      },\n      {\n        \"id\": \"ffffffff-ffff-ffff-ffff-ffffffffffff\",\n        \"name\": \"Cheeseburger\",\n        \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n        \"price\": 9314.23982536527,\n        \"availableOnlyInRestaurant\": true,\n        \"imagePath\": \"/images/menu-items/cheeseburger.png\"\n      }\n    ]\n  }\n]"
 										}
 									]
 								},
@@ -1749,7 +1989,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n  \"address\": \"Av. Paulista, 1000 - São Paulo/SP\",\n  \"closingTime\": \"23:01:03.346Z\",\n  \"kitchenTypeId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"Pizzaria Napoli\",\n  \"openingTime\": \"01:35:21.392Z\",\n  \"ownerId\": \"550e8400-e29b-41d4-a716-446655440000\"\n}",
+											"raw": "{\n  \"address\": \"Av. Paulista, 1000 - São Paulo/SP\",\n  \"closingTime\": \"11:00:45.388Z\",\n  \"kitchenTypeId\": \"44444444-4444-4444-4444-444444444444\",\n  \"name\": \"Pizzaria Napoli\",\n  \"openingTime\": \"12:25:46.747Z\",\n  \"ownerId\": \"bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb\"\n}",
 											"options": {
 												"raw": {
 													"headerFamily": "json",
@@ -1757,7 +1997,17 @@
 												}
 											}
 										},
-										"url": "{{baseUrl}}/api/v1/restaurants",
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/restaurants",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"restaurants"
+											]
+										},
 										"description": "Creates a new restaurant associated with an OWNER user and a kitchen type."
 									},
 									"response": [
@@ -1777,7 +2027,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\n  \"address\": \"Av. Paulista, 1000 - São Paulo/SP\",\n  \"closingTime\": \"23:01:03.346Z\",\n  \"kitchenTypeId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"Pizzaria Napoli\",\n  \"openingTime\": \"01:35:21.392Z\",\n  \"ownerId\": \"550e8400-e29b-41d4-a716-446655440000\"\n}",
+													"raw": "{\n  \"address\": \"Av. Paulista, 1000 - São Paulo/SP\",\n  \"closingTime\": \"11:00:45.388Z\",\n  \"kitchenTypeId\": \"44444444-4444-4444-4444-444444444444\",\n  \"name\": \"Pizzaria Napoli\",\n  \"openingTime\": \"12:25:46.747Z\",\n  \"ownerId\": \"bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb\"\n}",
 													"options": {
 														"raw": {
 															"headerFamily": "json",
@@ -1785,7 +2035,17 @@
 														}
 													}
 												},
-												"url": "{{baseUrl}}/api/v1/restaurants"
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/restaurants",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"restaurants"
+													]
+												}
 											},
 											"status": "Created",
 											"code": 201,
@@ -1797,7 +2057,7 @@
 												}
 											],
 											"cookie": [],
-											"body": "{\n  \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"Pizzaria Napoli\",\n  \"address\": \"Av. Paulista, 1000 - São Paulo/SP\",\n  \"kitchenType\": \"ITALIAN\",\n  \"openingTime\": \"08:00\",\n  \"closingTime\": \"22:00\",\n  \"ownerName\": \"Geová Junior\",\n  \"menuItems\": [\n    {\n      \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n      \"name\": \"Cheeseburger\",\n      \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n      \"price\": 4468.847035892858,\n      \"availableOnlyInRestaurant\": true,\n      \"imagePath\": \"/images/menu-items/cheeseburger.png\"\n    },\n    {\n      \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n      \"name\": \"Cheeseburger\",\n      \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n      \"price\": 3081.092125210665,\n      \"availableOnlyInRestaurant\": true,\n      \"imagePath\": \"/images/menu-items/cheeseburger.png\"\n    }\n  ]\n}"
+											"body": "{\n  \"id\": \"dddddddd-dddd-dddd-dddd-dddddddddddd\",\n  \"name\": \"Pizzaria Napoli\",\n  \"address\": \"Av. Paulista, 1000 - São Paulo/SP\",\n  \"kitchenType\": \"ITALIAN\",\n  \"openingTime\": \"08:00\",\n  \"closingTime\": \"22:00\",\n  \"ownerName\": \"Geová Junior\",\n  \"menuItems\": [\n    {\n      \"id\": \"ffffffff-ffff-ffff-ffff-ffffffffffff\",\n      \"name\": \"Cheeseburger\",\n      \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n      \"price\": 738.4105480310988,\n      \"availableOnlyInRestaurant\": true,\n      \"imagePath\": \"/images/menu-items/cheeseburger.png\"\n    },\n    {\n      \"id\": \"ffffffff-ffff-ffff-ffff-ffffffffffff\",\n      \"name\": \"Cheeseburger\",\n      \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n      \"price\": 2207.988628539681,\n      \"availableOnlyInRestaurant\": true,\n      \"imagePath\": \"/images/menu-items/cheeseburger.png\"\n    }\n  ]\n}"
 										},
 										{
 											"name": "Invalid request",
@@ -1811,7 +2071,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\n  \"address\": \"Av. Paulista, 1000 - São Paulo/SP\",\n  \"closingTime\": \"23:01:03.346Z\",\n  \"kitchenTypeId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"Pizzaria Napoli\",\n  \"openingTime\": \"01:35:21.392Z\",\n  \"ownerId\": \"550e8400-e29b-41d4-a716-446655440000\"\n}",
+													"raw": "{\n  \"address\": \"Av. Paulista, 1000 - São Paulo/SP\",\n  \"closingTime\": \"11:00:45.388Z\",\n  \"kitchenTypeId\": \"44444444-4444-4444-4444-444444444444\",\n  \"name\": \"Pizzaria Napoli\",\n  \"openingTime\": \"12:25:46.747Z\",\n  \"ownerId\": \"bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb\"\n}",
 													"options": {
 														"raw": {
 															"headerFamily": "json",
@@ -1819,7 +2079,17 @@
 														}
 													}
 												},
-												"url": "{{baseUrl}}/api/v1/restaurants"
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/restaurants",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"restaurants"
+													]
+												}
 											},
 											"status": "Bad Request",
 											"code": 400,
@@ -1840,7 +2110,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\n  \"address\": \"Av. Paulista, 1000 - São Paulo/SP\",\n  \"closingTime\": \"23:01:03.346Z\",\n  \"kitchenTypeId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"Pizzaria Napoli\",\n  \"openingTime\": \"01:35:21.392Z\",\n  \"ownerId\": \"550e8400-e29b-41d4-a716-446655440000\"\n}",
+													"raw": "{\n  \"address\": \"Av. Paulista, 1000 - São Paulo/SP\",\n  \"closingTime\": \"11:00:45.388Z\",\n  \"kitchenTypeId\": \"44444444-4444-4444-4444-444444444444\",\n  \"name\": \"Pizzaria Napoli\",\n  \"openingTime\": \"12:25:46.747Z\",\n  \"ownerId\": \"bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb\"\n}",
 													"options": {
 														"raw": {
 															"headerFamily": "json",
@@ -1848,7 +2118,17 @@
 														}
 													}
 												},
-												"url": "{{baseUrl}}/api/v1/restaurants"
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/restaurants",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"restaurants"
+													]
+												}
 											},
 											"status": "Not Found",
 											"code": 404,
@@ -1869,7 +2149,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\n  \"address\": \"Av. Paulista, 1000 - São Paulo/SP\",\n  \"closingTime\": \"23:01:03.346Z\",\n  \"kitchenTypeId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"Pizzaria Napoli\",\n  \"openingTime\": \"01:35:21.392Z\",\n  \"ownerId\": \"550e8400-e29b-41d4-a716-446655440000\"\n}",
+													"raw": "{\n  \"address\": \"Av. Paulista, 1000 - São Paulo/SP\",\n  \"closingTime\": \"11:00:45.388Z\",\n  \"kitchenTypeId\": \"44444444-4444-4444-4444-444444444444\",\n  \"name\": \"Pizzaria Napoli\",\n  \"openingTime\": \"12:25:46.747Z\",\n  \"ownerId\": \"bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb\"\n}",
 													"options": {
 														"raw": {
 															"headerFamily": "json",
@@ -1877,7 +2157,17 @@
 														}
 													}
 												},
-												"url": "{{baseUrl}}/api/v1/restaurants"
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/restaurants",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"restaurants"
+													]
+												}
 											},
 											"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
 											"code": 422,
@@ -1920,7 +2210,7 @@
 													"variable": [
 														{
 															"key": "id",
-															"value": "550e8400-e29b-41d4-a716-446655440000",
+															"value": "ffffffff-ffff-ffff-ffff-ffffffffffff",
 															"description": "Menu item identifier"
 														}
 													]
@@ -1966,7 +2256,7 @@
 														}
 													],
 													"cookie": [],
-													"body": "{\n  \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"Cheeseburger\",\n  \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n  \"price\": 4954.360902441346,\n  \"availableOnlyInRestaurant\": true,\n  \"imagePath\": \"/images/menu-items/cheeseburger.png\"\n}"
+													"body": "{\n  \"id\": \"ffffffff-ffff-ffff-ffff-ffffffffffff\",\n  \"name\": \"Cheeseburger\",\n  \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n  \"price\": 1097.7512387114707,\n  \"availableOnlyInRestaurant\": true,\n  \"imagePath\": \"/images/menu-items/cheeseburger.png\"\n}"
 												},
 												{
 													"name": "Menu item not found",
@@ -2016,7 +2306,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\n  \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n  \"imagePath\": \"/images/menu-items/cheeseburger.png\",\n  \"name\": \"Cheeseburger\",\n  \"price\": 6729.082968514048,\n  \"restaurantId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"availableOnlyInRestaurant\": true\n}",
+													"raw": "{\n  \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n  \"imagePath\": \"/images/menu-items/cheeseburger.png\",\n  \"name\": \"Cheeseburger\",\n  \"price\": 553.7085263642211,\n  \"restaurantId\": \"dddddddd-dddd-dddd-dddd-dddddddddddd\",\n  \"availableOnlyInRestaurant\": true\n}",
 													"options": {
 														"raw": {
 															"headerFamily": "json",
@@ -2038,7 +2328,7 @@
 													"variable": [
 														{
 															"key": "id",
-															"value": "550e8400-e29b-41d4-a716-446655440000",
+															"value": "ffffffff-ffff-ffff-ffff-ffffffffffff",
 															"description": "Menu item identifier"
 														}
 													]
@@ -2062,7 +2352,7 @@
 														],
 														"body": {
 															"mode": "raw",
-															"raw": "{\n  \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n  \"imagePath\": \"/images/menu-items/cheeseburger.png\",\n  \"name\": \"Cheeseburger\",\n  \"price\": 6729.082968514048,\n  \"restaurantId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"availableOnlyInRestaurant\": true\n}",
+															"raw": "{\n  \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n  \"imagePath\": \"/images/menu-items/cheeseburger.png\",\n  \"name\": \"Cheeseburger\",\n  \"price\": 553.7085263642211,\n  \"restaurantId\": \"dddddddd-dddd-dddd-dddd-dddddddddddd\",\n  \"availableOnlyInRestaurant\": true\n}",
 															"options": {
 																"raw": {
 																	"headerFamily": "json",
@@ -2098,7 +2388,7 @@
 														}
 													],
 													"cookie": [],
-													"body": "{\n  \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"Cheeseburger\",\n  \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n  \"price\": 4954.360902441346,\n  \"availableOnlyInRestaurant\": true,\n  \"imagePath\": \"/images/menu-items/cheeseburger.png\"\n}"
+													"body": "{\n  \"id\": \"ffffffff-ffff-ffff-ffff-ffffffffffff\",\n  \"name\": \"Cheeseburger\",\n  \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n  \"price\": 1097.7512387114707,\n  \"availableOnlyInRestaurant\": true,\n  \"imagePath\": \"/images/menu-items/cheeseburger.png\"\n}"
 												},
 												{
 													"name": "Invalid request",
@@ -2112,7 +2402,7 @@
 														],
 														"body": {
 															"mode": "raw",
-															"raw": "{\n  \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n  \"imagePath\": \"/images/menu-items/cheeseburger.png\",\n  \"name\": \"Cheeseburger\",\n  \"price\": 6729.082968514048,\n  \"restaurantId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"availableOnlyInRestaurant\": true\n}",
+															"raw": "{\n  \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n  \"imagePath\": \"/images/menu-items/cheeseburger.png\",\n  \"name\": \"Cheeseburger\",\n  \"price\": 553.7085263642211,\n  \"restaurantId\": \"dddddddd-dddd-dddd-dddd-dddddddddddd\",\n  \"availableOnlyInRestaurant\": true\n}",
 															"options": {
 																"raw": {
 																	"headerFamily": "json",
@@ -2157,7 +2447,7 @@
 														],
 														"body": {
 															"mode": "raw",
-															"raw": "{\n  \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n  \"imagePath\": \"/images/menu-items/cheeseburger.png\",\n  \"name\": \"Cheeseburger\",\n  \"price\": 6729.082968514048,\n  \"restaurantId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"availableOnlyInRestaurant\": true\n}",
+															"raw": "{\n  \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n  \"imagePath\": \"/images/menu-items/cheeseburger.png\",\n  \"name\": \"Cheeseburger\",\n  \"price\": 553.7085263642211,\n  \"restaurantId\": \"dddddddd-dddd-dddd-dddd-dddddddddddd\",\n  \"availableOnlyInRestaurant\": true\n}",
 															"options": {
 																"raw": {
 																	"headerFamily": "json",
@@ -2202,7 +2492,7 @@
 														],
 														"body": {
 															"mode": "raw",
-															"raw": "{\n  \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n  \"imagePath\": \"/images/menu-items/cheeseburger.png\",\n  \"name\": \"Cheeseburger\",\n  \"price\": 6729.082968514048,\n  \"restaurantId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"availableOnlyInRestaurant\": true\n}",
+															"raw": "{\n  \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n  \"imagePath\": \"/images/menu-items/cheeseburger.png\",\n  \"name\": \"Cheeseburger\",\n  \"price\": 553.7085263642211,\n  \"restaurantId\": \"dddddddd-dddd-dddd-dddd-dddddddddddd\",\n  \"availableOnlyInRestaurant\": true\n}",
 															"options": {
 																"raw": {
 																	"headerFamily": "json",
@@ -2256,7 +2546,7 @@
 													"variable": [
 														{
 															"key": "id",
-															"value": "550e8400-e29b-41d4-a716-446655440000",
+															"value": "ffffffff-ffff-ffff-ffff-ffffffffffff",
 															"description": "Menu item identifier"
 														}
 													]
@@ -2323,6 +2613,36 @@
 													"header": [],
 													"cookie": [],
 													"body": ""
+												},
+												{
+													"name": "Resource in use",
+													"originalRequest": {
+														"method": "DELETE",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/menu-items/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"menu-items",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "Conflict",
+													"code": 409,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
 												}
 											]
 										}
@@ -2338,7 +2658,17 @@
 												"value": "*/*"
 											}
 										],
-										"url": "{{baseUrl}}/api/v1/menu-items",
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/menu-items",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"menu-items"
+											]
+										},
 										"description": "Returns all registered menu items."
 									},
 									"response": [
@@ -2352,7 +2682,17 @@
 														"value": "*/*"
 													}
 												],
-												"url": "{{baseUrl}}/api/v1/menu-items"
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/menu-items",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"menu-items"
+													]
+												}
 											},
 											"status": "OK",
 											"code": 200,
@@ -2364,7 +2704,7 @@
 												}
 											],
 											"cookie": [],
-											"body": "[\n  {\n    \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n    \"name\": \"Cheeseburger\",\n    \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n    \"price\": 5660.362915275172,\n    \"availableOnlyInRestaurant\": true,\n    \"imagePath\": \"/images/menu-items/cheeseburger.png\"\n  },\n  {\n    \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n    \"name\": \"Cheeseburger\",\n    \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n    \"price\": 6106.657097516666,\n    \"availableOnlyInRestaurant\": true,\n    \"imagePath\": \"/images/menu-items/cheeseburger.png\"\n  }\n]"
+											"body": "[\n  {\n    \"id\": \"ffffffff-ffff-ffff-ffff-ffffffffffff\",\n    \"name\": \"Cheeseburger\",\n    \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n    \"price\": 4520.296455074728,\n    \"availableOnlyInRestaurant\": true,\n    \"imagePath\": \"/images/menu-items/cheeseburger.png\"\n  },\n  {\n    \"id\": \"ffffffff-ffff-ffff-ffff-ffffffffffff\",\n    \"name\": \"Cheeseburger\",\n    \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n    \"price\": 5985.350052483216,\n    \"availableOnlyInRestaurant\": true,\n    \"imagePath\": \"/images/menu-items/cheeseburger.png\"\n  }\n]"
 										}
 									]
 								},
@@ -2384,7 +2724,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n  \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n  \"imagePath\": \"/images/menu-items/cheeseburger.png\",\n  \"name\": \"Cheeseburger\",\n  \"price\": 6729.082968514048,\n  \"restaurantId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"availableOnlyInRestaurant\": true\n}",
+											"raw": "{\n  \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n  \"imagePath\": \"/images/menu-items/cheeseburger.png\",\n  \"name\": \"Cheeseburger\",\n  \"price\": 553.7085263642211,\n  \"restaurantId\": \"dddddddd-dddd-dddd-dddd-dddddddddddd\",\n  \"availableOnlyInRestaurant\": true\n}",
 											"options": {
 												"raw": {
 													"headerFamily": "json",
@@ -2392,7 +2732,17 @@
 												}
 											}
 										},
-										"url": "{{baseUrl}}/api/v1/menu-items",
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/menu-items",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"menu-items"
+											]
+										},
 										"description": "Creates a new menu item associated with a restaurant."
 									},
 									"response": [
@@ -2412,7 +2762,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\n  \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n  \"imagePath\": \"/images/menu-items/cheeseburger.png\",\n  \"name\": \"Cheeseburger\",\n  \"price\": 6729.082968514048,\n  \"restaurantId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"availableOnlyInRestaurant\": true\n}",
+													"raw": "{\n  \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n  \"imagePath\": \"/images/menu-items/cheeseburger.png\",\n  \"name\": \"Cheeseburger\",\n  \"price\": 553.7085263642211,\n  \"restaurantId\": \"dddddddd-dddd-dddd-dddd-dddddddddddd\",\n  \"availableOnlyInRestaurant\": true\n}",
 													"options": {
 														"raw": {
 															"headerFamily": "json",
@@ -2420,7 +2770,17 @@
 														}
 													}
 												},
-												"url": "{{baseUrl}}/api/v1/menu-items"
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/menu-items",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"menu-items"
+													]
+												}
 											},
 											"status": "Created",
 											"code": 201,
@@ -2432,7 +2792,7 @@
 												}
 											],
 											"cookie": [],
-											"body": "{\n  \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"Cheeseburger\",\n  \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n  \"price\": 4954.360902441346,\n  \"availableOnlyInRestaurant\": true,\n  \"imagePath\": \"/images/menu-items/cheeseburger.png\"\n}"
+											"body": "{\n  \"id\": \"ffffffff-ffff-ffff-ffff-ffffffffffff\",\n  \"name\": \"Cheeseburger\",\n  \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n  \"price\": 1097.7512387114707,\n  \"availableOnlyInRestaurant\": true,\n  \"imagePath\": \"/images/menu-items/cheeseburger.png\"\n}"
 										},
 										{
 											"name": "Invalid request",
@@ -2446,7 +2806,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\n  \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n  \"imagePath\": \"/images/menu-items/cheeseburger.png\",\n  \"name\": \"Cheeseburger\",\n  \"price\": 6729.082968514048,\n  \"restaurantId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"availableOnlyInRestaurant\": true\n}",
+													"raw": "{\n  \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n  \"imagePath\": \"/images/menu-items/cheeseburger.png\",\n  \"name\": \"Cheeseburger\",\n  \"price\": 553.7085263642211,\n  \"restaurantId\": \"dddddddd-dddd-dddd-dddd-dddddddddddd\",\n  \"availableOnlyInRestaurant\": true\n}",
 													"options": {
 														"raw": {
 															"headerFamily": "json",
@@ -2454,7 +2814,17 @@
 														}
 													}
 												},
-												"url": "{{baseUrl}}/api/v1/menu-items"
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/menu-items",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"menu-items"
+													]
+												}
 											},
 											"status": "Bad Request",
 											"code": 400,
@@ -2475,7 +2845,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\n  \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n  \"imagePath\": \"/images/menu-items/cheeseburger.png\",\n  \"name\": \"Cheeseburger\",\n  \"price\": 6729.082968514048,\n  \"restaurantId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"availableOnlyInRestaurant\": true\n}",
+													"raw": "{\n  \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n  \"imagePath\": \"/images/menu-items/cheeseburger.png\",\n  \"name\": \"Cheeseburger\",\n  \"price\": 553.7085263642211,\n  \"restaurantId\": \"dddddddd-dddd-dddd-dddd-dddddddddddd\",\n  \"availableOnlyInRestaurant\": true\n}",
 													"options": {
 														"raw": {
 															"headerFamily": "json",
@@ -2483,7 +2853,17 @@
 														}
 													}
 												},
-												"url": "{{baseUrl}}/api/v1/menu-items"
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/menu-items",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"menu-items"
+													]
+												}
 											},
 											"status": "Not Found",
 											"code": 404,
@@ -2504,7 +2884,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\n  \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n  \"imagePath\": \"/images/menu-items/cheeseburger.png\",\n  \"name\": \"Cheeseburger\",\n  \"price\": 6729.082968514048,\n  \"restaurantId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"availableOnlyInRestaurant\": true\n}",
+													"raw": "{\n  \"description\": \"Beef burger with cheddar cheese, lettuce and tomato.\",\n  \"imagePath\": \"/images/menu-items/cheeseburger.png\",\n  \"name\": \"Cheeseburger\",\n  \"price\": 553.7085263642211,\n  \"restaurantId\": \"dddddddd-dddd-dddd-dddd-dddddddddddd\",\n  \"availableOnlyInRestaurant\": true\n}",
 													"options": {
 														"raw": {
 															"headerFamily": "json",
@@ -2512,7 +2892,17 @@
 														}
 													}
 												},
-												"url": "{{baseUrl}}/api/v1/menu-items"
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/menu-items",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"menu-items"
+													]
+												}
 											},
 											"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
 											"code": 422,
@@ -2555,7 +2945,7 @@
 													"variable": [
 														{
 															"key": "id",
-															"value": "550e8400-e29b-41d4-a716-446655440000",
+															"value": "44444444-4444-4444-4444-444444444444",
 															"description": "Kitchen type identifier"
 														}
 													]
@@ -2601,7 +2991,7 @@
 														}
 													],
 													"cookie": [],
-													"body": "{\n  \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"ITALIAN\"\n}"
+													"body": "{\n  \"id\": \"44444444-4444-4444-4444-444444444444\",\n  \"name\": \"ITALIAN\"\n}"
 												},
 												{
 													"name": "Kitchen type not found",
@@ -2673,7 +3063,7 @@
 													"variable": [
 														{
 															"key": "id",
-															"value": "550e8400-e29b-41d4-a716-446655440000",
+															"value": "44444444-4444-4444-4444-444444444444",
 															"description": "Kitchen type identifier"
 														}
 													]
@@ -2733,7 +3123,7 @@
 														}
 													],
 													"cookie": [],
-													"body": "{\n  \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"ITALIAN\"\n}"
+													"body": "{\n  \"id\": \"44444444-4444-4444-4444-444444444444\",\n  \"name\": \"ITALIAN\"\n}"
 												},
 												{
 													"name": "Invalid request",
@@ -2891,7 +3281,7 @@
 													"variable": [
 														{
 															"key": "id",
-															"value": "550e8400-e29b-41d4-a716-446655440000",
+															"value": "44444444-4444-4444-4444-444444444444",
 															"description": "Kitchen type identifier"
 														}
 													]
@@ -2958,6 +3348,36 @@
 													"header": [],
 													"cookie": [],
 													"body": ""
+												},
+												{
+													"name": "Resource in use",
+													"originalRequest": {
+														"method": "DELETE",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/kitchen-types/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"kitchen-types",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "Conflict",
+													"code": 409,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
 												}
 											]
 										}
@@ -2973,7 +3393,17 @@
 												"value": "*/*"
 											}
 										],
-										"url": "{{baseUrl}}/api/v1/kitchen-types",
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/kitchen-types",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"kitchen-types"
+											]
+										},
 										"description": "Returns all registered kitchen types."
 									},
 									"response": [
@@ -2987,7 +3417,17 @@
 														"value": "*/*"
 													}
 												],
-												"url": "{{baseUrl}}/api/v1/kitchen-types"
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/kitchen-types",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"kitchen-types"
+													]
+												}
 											},
 											"status": "OK",
 											"code": 200,
@@ -2999,7 +3439,7 @@
 												}
 											],
 											"cookie": [],
-											"body": "[\n  {\n    \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n    \"name\": \"ITALIAN\"\n  },\n  {\n    \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n    \"name\": \"ITALIAN\"\n  }\n]"
+											"body": "[\n  {\n    \"id\": \"44444444-4444-4444-4444-444444444444\",\n    \"name\": \"ITALIAN\"\n  },\n  {\n    \"id\": \"44444444-4444-4444-4444-444444444444\",\n    \"name\": \"ITALIAN\"\n  }\n]"
 										}
 									]
 								},
@@ -3027,7 +3467,17 @@
 												}
 											}
 										},
-										"url": "{{baseUrl}}/api/v1/kitchen-types",
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/kitchen-types",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"kitchen-types"
+											]
+										},
 										"description": "Creates a new kitchen type."
 									},
 									"response": [
@@ -3055,7 +3505,17 @@
 														}
 													}
 												},
-												"url": "{{baseUrl}}/api/v1/kitchen-types"
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/kitchen-types",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"kitchen-types"
+													]
+												}
 											},
 											"status": "Created",
 											"code": 201,
@@ -3067,7 +3527,7 @@
 												}
 											],
 											"cookie": [],
-											"body": "{\n  \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"ITALIAN\"\n}"
+											"body": "{\n  \"id\": \"44444444-4444-4444-4444-444444444444\",\n  \"name\": \"ITALIAN\"\n}"
 										},
 										{
 											"name": "Invalid request",
@@ -3089,7 +3549,17 @@
 														}
 													}
 												},
-												"url": "{{baseUrl}}/api/v1/kitchen-types"
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/kitchen-types",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"kitchen-types"
+													]
+												}
 											},
 											"status": "Bad Request",
 											"code": 400,
@@ -3118,7 +3588,17 @@
 														}
 													}
 												},
-												"url": "{{baseUrl}}/api/v1/kitchen-types"
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/kitchen-types",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"kitchen-types"
+													]
+												}
 											},
 											"status": "Conflict",
 											"code": 409,
