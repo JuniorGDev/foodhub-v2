@@ -2,13 +2,16 @@ package br.com.foodhub.application.service;
 
 import br.com.foodhub.application.dto.user.CreateUserDTO;
 import br.com.foodhub.application.dto.user.UpdateUserDTO;
+import br.com.foodhub.domain.exception.ResourceInUseException;
 import br.com.foodhub.domain.exception.ResourceNotFoundException;
 import br.com.foodhub.domain.exception.UserAlreadyExistsException;
 import br.com.foodhub.domain.model.User;
 import br.com.foodhub.domain.model.UserType;
 import br.com.foodhub.infrastructure.repository.UserRepository;
 import br.com.foodhub.infrastructure.repository.UserTypeRepository;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
@@ -56,9 +59,15 @@ public class UserService {
         return repository.save(user);
     }
 
+    @Transactional
     public void delete(UUID id) {
         var user = findUser(id);
-        repository.delete(user);
+        try {
+            repository.delete(user);
+            repository.flush();
+        } catch (DataIntegrityViolationException ex) {
+            throw new ResourceInUseException("User");
+        }
     }
 
     private User findUser(UUID id) {

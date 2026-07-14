@@ -67,7 +67,7 @@ public record MenuItemRequest(
 
         @Schema(
                 description = "Identifier of the restaurant that owns the menu item.",
-                example = "550e8400-e29b-41d4-a716-446655440000"
+                example = "dddddddd-dddd-dddd-dddd-dddddddddddd"
         )
         @NotNull(message = "Restaurant is required")
         UUID restaurantId

@@ -11,7 +11,7 @@ import java.util.UUID;
 public record KitchenTypeResponse(
         @Schema(
                 description = "Unique identifier of the kitchen type.",
-                example = "550e8400-e29b-41d4-a716-446655440000"
+                example = "44444444-4444-4444-4444-444444444444"
         )
         UUID id,
         @Schema(

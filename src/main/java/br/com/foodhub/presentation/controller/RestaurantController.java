@@ -75,7 +75,7 @@ public class RestaurantController {
 
             @Parameter(
                     description = "Restaurant identifier",
-                    example = "550e8400-e29b-41d4-a716-446655440000"
+                    example = "dddddddd-dddd-dddd-dddd-dddddddddddd"
             )
             @PathVariable UUID id) {
 
@@ -155,7 +155,7 @@ public class RestaurantController {
 
             @Parameter(
                     description = "Restaurant identifier",
-                    example = "550e8400-e29b-41d4-a716-446655440000"
+                    example = "dddddddd-dddd-dddd-dddd-dddddddddddd"
             )
             @PathVariable UUID id,
 
@@ -184,6 +184,11 @@ public class RestaurantController {
                     responseCode = "404",
                     description = "Restaurant not found",
                     content = @Content
+            ),
+            @ApiResponse(
+                    responseCode = "409",
+                    description = "Resource in use",
+                    content = @Content
             )
     })
     @DeleteMapping("/{id}")
@@ -191,7 +196,7 @@ public class RestaurantController {
 
             @Parameter(
                     description = "Restaurant identifier",
-                    example = "550e8400-e29b-41d4-a716-446655440000"
+                    example = "dddddddd-dddd-dddd-dddd-dddddddddddd"
             )
             @PathVariable UUID id) {
 

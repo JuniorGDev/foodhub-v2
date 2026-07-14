@@ -1,11 +1,13 @@
 package br.com.foodhub.application.service;
 
 import br.com.foodhub.application.dto.menuItem.MenuItemDTO;
+import br.com.foodhub.domain.exception.ResourceInUseException;
 import br.com.foodhub.domain.exception.ResourceNotFoundException;
 import br.com.foodhub.domain.model.MenuItem;
 import br.com.foodhub.domain.model.Restaurant;
 import br.com.foodhub.infrastructure.repository.MenuItemRepository;
 import br.com.foodhub.infrastructure.repository.RestaurantRepository;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -63,7 +65,12 @@ public class MenuItemService {
     @Transactional
     public void delete(UUID id) {
         var menuItem = findMenuItem(id);
-        repository.delete(menuItem);
+        try {
+            repository.delete(menuItem);
+            repository.flush();
+        } catch (DataIntegrityViolationException ex) {
+            throw new ResourceInUseException("Menu item");
+        }
     }
 
     private MenuItem findMenuItem(UUID id) {

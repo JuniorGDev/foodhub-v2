@@ -12,7 +12,7 @@ public record UserResponse(
 
         @Schema(
                 description = "Unique identifier of the user.",
-                example = "550e8400-e29b-41d4-a716-446655440000"
+                example = "bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb"
         )
         UUID id,
 
@@ -24,7 +24,7 @@ public record UserResponse(
 
         @Schema(
                 description = "User email address.",
-                example = "junior@foodhub.com"
+                example = "owner@foodhub.com"
         )
         String email,
 
