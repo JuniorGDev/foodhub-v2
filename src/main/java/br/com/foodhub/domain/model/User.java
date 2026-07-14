@@ -50,12 +50,8 @@ public class User implements Serializable {
             String address,
             UserType userType
     ) {
-        this.name = name;
-        this.email = normalizeEmail(email);
+    	update(name, email, address, userType);
         this.password = password;
-        this.address = address;
-        this.userType = userType;
-
         this.createdAt = LocalDateTime.now();
         this.updatedAt = this.createdAt;
     }
